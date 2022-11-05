@@ -39,6 +39,7 @@ function PostForm({ obj }) {
       ...prevState,
       [name]: value,
     }));
+    console.warn(e.target);
   };
 
   const handleSubmit = (e) => {

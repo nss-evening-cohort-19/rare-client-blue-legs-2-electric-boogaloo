@@ -20,4 +20,12 @@ const updatePost = (postObj) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default { getPostById, createPost, updatePost };
+const getAllPosts = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch(reject);
+});
+
+export {
+  getAllPosts, getPostById, createPost, updatePost,
+};

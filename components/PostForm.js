@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import Async from 'react-select';
 
 const initialState = {
   id: null,
@@ -16,8 +16,8 @@ const initialState = {
 
 function PostForm({ obj }) {
   const [input, setInput] = useState(initialState);
-  const [categories, setCategories] = useState();
-  const [tags, setTags] = useState();
+  const [categories] = useState();
+  const [tags] = useState();
 
   const getTheContent = () => {
     if (obj.id) {

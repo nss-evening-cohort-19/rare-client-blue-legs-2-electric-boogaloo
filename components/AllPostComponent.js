@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import PropTypes, { string, int } from 'prop-types';
+import PropTypes, { string, number } from 'prop-types';
 import Link from 'next/link';
 
 export default function AllPostComponent({ obj }) {
@@ -22,7 +22,7 @@ export default function AllPostComponent({ obj }) {
 
 AllPostComponent.propTypes = {
   obj: PropTypes.shape({
-    id: int,
+    id: number,
     title: string,
     author: string,
     content: string,

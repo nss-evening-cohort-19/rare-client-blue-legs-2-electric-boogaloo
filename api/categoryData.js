@@ -1,11 +1,5 @@
-import axios from 'axios';
+export const getAllCategories = () => fetch('http://localhost:8088/categories')
+  .then((res) => res.json());
 
-const dbUrl = 'http://localhost:8088/categories';
-
-const getAllCategories = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}`)
-    .then((catArr) => resolve(catArr))
-    .catch(reject);
-});
-
-export default getAllCategories;
+export const getPostsByCategory = (id) => fetch(`http://localhost:8088/posts?category_id=${id}`)
+  .then((res) => res.json());

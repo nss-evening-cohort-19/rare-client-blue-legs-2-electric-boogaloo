@@ -1,19 +1,30 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import PropTypes, { string, int } from 'prop-types';
+import Link from 'next/link';
 
-export default function AllPostComponent() {
+export default function AllPostComponent({ obj }) {
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+        <Card.Title>{obj.title}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">{obj.author}</Card.Subtitle>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the content.
+          {obj.content}
         </Card.Text>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
+        <Link href={`/posts/${obj.id}`} passHref>
+          Link to Card
+        </Link>
       </Card.Body>
     </Card>
   );
 }
+
+AllPostComponent.propTypes = {
+  obj: PropTypes.shape({
+    id: int,
+    title: string,
+    author: string,
+    content: string,
+  }).isRequired,
+};

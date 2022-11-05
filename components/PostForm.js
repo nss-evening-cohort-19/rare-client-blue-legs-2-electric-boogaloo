@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
-import getAllCategories from '../api/categoryData';
+import { getAllCategories } from '../api/categoryData';
 import { getAllTags } from '../api/tagsData';
 import { getPostTagsByPostId } from '../api/postTags';
 
@@ -27,8 +28,8 @@ function PostForm({ obj }) {
       setInput(obj);
       getPostTagsByPostId(obj.id).then(setPostTags);
     } else {
-      getAllCategories.then(setCategories);
-      getAllTags.then(setTags);
+      getAllCategories().then((catData) => setCategories(catData));
+      getAllTags().then((tagData) => setTags(tagData));
     }
   };
 
@@ -47,7 +48,7 @@ function PostForm({ obj }) {
 
   useEffect(() => {
     getTheContent();
-  }, []);
+  }, [obj]);
 
   return (
     <>
@@ -61,23 +62,25 @@ function PostForm({ obj }) {
           <Form.Control type="text" onChange={handleChange} placeholder="Enter your Image URL" name="image_url" value={input.image_url} />
 
           <Form.Label>Article</Form.Label>
-          <Form.Control as="textarea" onChange={handleChange} rows={3} name="content" value={input.content} />
+          <Form.Control as="textarea" onChange={handleChange} placeholder="Main content goes here" rows={3} name="content" value={input.content} />
 
           <Form.Label>Category</Form.Label>
           <Form.Select aria-label="Default select example" name="category" onChange={handleChange}>
-            <option>Select a Category</option>
-            {categories.map((cat) => (
-              <option selected={cat.id === input.category_id} value={cat}>{cat}</option>
+            <option value=" ">Select a Category</option>
+            {categories?.map((cat) => (
+              <option key={cat.id} selected={cat.id === input.category_id} value={cat.label}>{cat.label}</option>
             ))}
           </Form.Select>
-          {tags.map((tag) => (
-            <div name="tag" key={`${tag}FormCheck`} className="mb-3">
+          <Form.Label>Tags</Form.Label>
+          {tags?.map((tag) => (
+            <div name="tag" key={`${tag.id}FormCheck`} className="mb-3">
               <Form.Check
                 type="checkbox"
                 id="default-checkbox"
-                label={tag}
+                label={tag.label}
+                value={tag.id}
                 onChange={handleChange}
-                checked={postTags.id.includes(tag.id)}
+                checked={postTags.find((pag) => pag.id === tag.id) !== undefined}
               />
             </div>
           ))}

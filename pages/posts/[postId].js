@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import getSinglePost from '../../api/postData';
@@ -10,13 +11,11 @@ export default function SinglePostPage() {
 
   const getThePost = () => {
     getSinglePost(postId).then(setPost);
-    console.warn(post);
   };
 
   useEffect(() => {
     getThePost();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [router]);
 
   return (
     <div>

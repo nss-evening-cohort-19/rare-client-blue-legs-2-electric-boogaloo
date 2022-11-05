@@ -24,3 +24,15 @@ body {
 .navbar-item img {
   max-height: 3rem;
 }
+
+.navbar > .container {
+  max-width: 100%;
+  margin-left: 20px;
+  margin-right: 10px;
+  padding: 0px;
+}
+
+.navbar {
+  margin: 0;
+  padding: 10px;
+}

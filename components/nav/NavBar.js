@@ -22,16 +22,16 @@ function AppNavBar({ token, setToken }) {
           <Nav className="me-auto">
             { token ? (
               <>
-                <Link passHref href="/">
+                <Link passHref href="/posts/allPosts">
                   <Nav.Link>All Posts</Nav.Link>
                 </Link>
-                <Link passHref href="/">
+                <Link passHref href="/posts/myPosts">
                   <Nav.Link>My Posts</Nav.Link>
                 </Link>
-                <Link passHref href="/">
+                <Link passHref href="/categories/allCategories">
                   <Nav.Link>Category Manager</Nav.Link>
                 </Link>
-                <Link passHref href="/">
+                <Link passHref href="/tags/allTags">
                   <Nav.Link>Tag Manager</Nav.Link>
                 </Link>
               </>

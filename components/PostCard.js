@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
 
 export default function PostCard({
-  postObject, reactions, router, onUpdate,
+  postObject, router, onUpdate,
 }) {
   const deleteThisPost = () => {
     /* if (window.confirm('Delete this post?')) {
@@ -26,7 +26,6 @@ export default function PostCard({
           <Image className="postCardImage" src={postObject.image_url} />
           <Card.Text className="postPubDate">{postObject.publication_date}</Card.Text>
           <Card.Text className="postAuthor">Author: {postObject.author}</Card.Text>
-          <Card.Text className="postReactionCount">{reactions}</Card.Text>
           <div className="postCardButtons">
             {router === '/myPosts' ? (
               <div className="postCardButtons">
@@ -57,5 +56,5 @@ PostCard.propTypes = {
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
   router: PropTypes.string.isRequired,
-  reactions: PropTypes.string.isRequired,
-};
+/*   reactions: PropTypes.string.isRequired,
+ */ };

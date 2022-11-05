@@ -9,6 +9,12 @@ function Home() {
     getPost(1).then(setPost);
   }, []);
 
+  useEffect(() => {
+    getPost(1).then((thePost) => {
+      console.warn(thePost.comments);
+    });
+  }, []);
+
   return (
     <div>
       {

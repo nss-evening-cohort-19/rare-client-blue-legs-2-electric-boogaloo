@@ -18,7 +18,7 @@ export default function AllPostsPage() {
       <div>All Posts Page</div>
       {
         posts?.map((postObject) => (
-          <AllPostComponent obj={postObject} key={postObject.id} />
+          <AllPostComponent obj={postObject} key={postObject.id} onUpdate={getPosts} />
         ))
       }
     </>

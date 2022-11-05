@@ -1,8 +1,8 @@
 {
-  "name": "rare",
+  "name": "rare-publishing",
   "private": true,
   "version": "1.0.0",
-  "author": "Lesley Keyes",
+  "author": "H Blueleg",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

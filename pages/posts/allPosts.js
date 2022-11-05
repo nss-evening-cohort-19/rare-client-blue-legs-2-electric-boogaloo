@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import getAllPosts from '../../api/postData';
+import { getAllPosts } from '../../api/postData';
 import AllPostComponent from '../../components/AllPostComponent';
 
 export default function AllPostsPage() {

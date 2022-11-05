@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import getAllCategories from '../api/categoryData';
+import { getAllTags } from '../api/tagsData';
+import { getPostTagsByPostId } from '../api/postTags';
 
 const initialState = {
   id: null,
@@ -11,17 +14,21 @@ const initialState = {
   image_url: '',
   content: '',
   publication_date: '',
-  approved: false,
 };
 
 function PostForm({ obj }) {
   const [input, setInput] = useState(initialState);
-  const [categories] = useState();
-  const [tags] = useState();
+  const [categories, setCategories] = useState([]);
+  const [postTags, setPostTags] = useState([]);
+  const [tags, setTags] = useState([]);
 
   const getTheContent = () => {
     if (obj.id) {
       setInput(obj);
+      getPostTagsByPostId(obj.id).then(setPostTags);
+    } else {
+      getAllCategories.then(setCategories);
+      getAllTags.then(setTags);
     }
   };
 
@@ -31,6 +38,11 @@ function PostForm({ obj }) {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.warn(input);
   };
 
   useEffect(() => {
@@ -55,7 +67,7 @@ function PostForm({ obj }) {
           <Form.Select aria-label="Default select example" name="category" onChange={handleChange}>
             <option>Select a Category</option>
             {categories.map((cat) => (
-              <option value={cat}>{cat}</option>
+              <option selected={cat.id === input.category_id} value={cat}>{cat}</option>
             ))}
           </Form.Select>
           {tags.map((tag) => (
@@ -65,12 +77,12 @@ function PostForm({ obj }) {
                 id="default-checkbox"
                 label={tag}
                 onChange={handleChange}
-                checked={input.tag === tag}
+                checked={postTags.id.includes(tag.id)}
               />
             </div>
           ))}
         </Form.Group>
-        <Button className="submit-btn" type="submit" variant="success">Submit</Button>
+        <Button className="submit-btn" type="submit" onClick={handleSubmit} variant="success">Submit</Button>
       </Form>
     </>
   );

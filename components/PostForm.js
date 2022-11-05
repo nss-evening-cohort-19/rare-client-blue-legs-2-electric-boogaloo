@@ -39,7 +39,7 @@ function PostForm({ obj }) {
       ...prevState,
       [name]: value,
     }));
-    console.warn(e.target);
+    console.warn(name, value);
   };
 
   const handleSubmit = (e) => {
@@ -78,6 +78,7 @@ function PostForm({ obj }) {
               <Form.Check
                 type="checkbox"
                 id="default-checkbox"
+                name="tag"
                 label={tag.label}
                 value={tag.id}
                 onChange={handleChange}

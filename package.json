@@ -1,8 +1,8 @@
 {
-  "name": "blue-legs-2-electric-boogaloo",
+  "name": "rare-publishing",
   "private": true,
   "version": "1.0.0",
-  "author": "Team 2",
+  "author": "H Blueleg",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -1,7 +1,8 @@
 import React from 'react';
+import AllPostComponent from '../../components/AllPostComponent';
 
 export default function allPostsPage() {
   return (
-    <div>all Posts Page</div>
+    <><div>All Posts Page</div><AllPostComponent /></>
   );
 }

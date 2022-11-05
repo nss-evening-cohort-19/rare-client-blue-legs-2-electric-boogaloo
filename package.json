@@ -2,7 +2,7 @@
   "name": "rare-publishing",
   "private": true,
   "version": "1.0.0",
-  "author": "Christian Black",
+  "author": "H Blueleg",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

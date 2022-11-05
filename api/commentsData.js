@@ -5,4 +5,6 @@ const getCommentsByPost = (postId) => fetch(`${dbUrl}/comments?post_id=${postId}
 
 const deleteComment = (commentId) => fetch(`${dbUrl}/comments/${commentId}`).then((res) => res.json());
 
-export { getCommentsByPost, deleteComment };
+const getPost = (postId) => fetch(`${dbUrl}/posts/${postId}`).then((res) => res.json());
+
+export { getCommentsByPost, deleteComment, getPost };

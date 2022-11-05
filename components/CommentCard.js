@@ -30,7 +30,7 @@ function CommentCard({ commentObj, onUpdate, setCommentToUpdate }) {
       <Card.Body>
         <Card.Text>{ commentObj.content }</Card.Text>
       </Card.Body>
-      { token === commentObj.id ? (
+      { token === commentObj.author_id ? (
         <div>
           <DropdownButton align="end" className="cardDropdown" title={<FaEllipsisV className="droptoggleicon" />}>
             <Dropdown.Item
@@ -53,6 +53,7 @@ function CommentCard({ commentObj, onUpdate, setCommentToUpdate }) {
 CommentCard.propTypes = {
   commentObj: PropTypes.shape({
     id: number,
+    author_id: number,
     post_id: number,
     content: string,
   }).isRequired,

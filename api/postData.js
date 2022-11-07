@@ -10,7 +10,7 @@ const getPostById = (id) => new Promise((resolve, reject) => {
 
 const createPost = (postObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}`, postObj)
-    .then(resolve)
+    .then((newObj) => resolve(newObj.data))
     .catch(reject);
 });
 

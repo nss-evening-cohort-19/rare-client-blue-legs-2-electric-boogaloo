@@ -8,5 +8,17 @@ const getPostTagsByPostId = (postId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const createPostTag = (postObj) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}`, postObj)
+    .then(resolve)
+    .catch(reject);
+});
+
+const deletePostTag = (id) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/${id}`)
+    .then(resolve)
+    .catch(reject);
+});
+
 // eslint-disable-next-line import/prefer-default-export
-export { getPostTagsByPostId };
+export { getPostTagsByPostId, createPostTag, deletePostTag };

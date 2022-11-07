@@ -5,12 +5,12 @@ import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 import { getAllCategories } from '../api/categoryData';
 import { getAllTags } from '../api/tagsData';
-import { getPostTagsByPostId } from '../api/postTags';
-import { createPost } from '../api/postData';
+import { getPostTagsByPostId } from '../api/postTagsData';
+import { createPost, updatePost } from '../api/postData';
 import { createPostTags, deletePostTagsByPostId } from '../api/mergedData';
 
-const initialPostState = {
-  user_id: '',
+const initialState = {
+  user_id: null,
   category_id: null,
   title: '',
   image_url: '',
@@ -20,7 +20,7 @@ const initialPostState = {
 };
 
 function PostForm({ obj }) {
-  const [input, setInput] = useState(initialPostState);
+  const [input, setInput] = useState(initialState);
   const [categories, setCategories] = useState([]);
   const [postTags, setPostTags] = useState([]);
   const [tags, setTags] = useState([]);
@@ -30,10 +30,9 @@ function PostForm({ obj }) {
     if (obj.id) {
       setInput(obj);
       getPostTagsByPostId(obj.id).then(setPostTags);
-    } else {
-      getAllCategories().then((catData) => setCategories(catData));
-      getAllTags().then((tagData) => setTags(tagData));
     }
+    getAllCategories().then((catData) => setCategories(catData));
+    getAllTags().then((tagData) => setTags(tagData));
   };
 
   const handleTagChange = (e) => {
@@ -50,7 +49,6 @@ function PostForm({ obj }) {
         const returnArr = prevCopy.splice(index, 1);
         return returnArr;
       });
-      getTheContent();
     }
   };
 
@@ -64,19 +62,28 @@ function PostForm({ obj }) {
       ...prevState,
       [name]: value,
     }));
-    console.warn(postTags);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newPost = { ...input, user_id: Number(token) };
-    createPost(newPost).then((postObj) => {
-      deletePostTagsByPostId(postObj.id).then(() => {
-        const tagsArr = postTags.map((tag) => ({ ...tag, post_id: postObj.id }));
-        createPostTags(tagsArr).then(() => {
+    if (obj.id) {
+      updatePost(input).then(() => {
+        deletePostTagsByPostId(obj.id).then(() => {
+          const tagsArr = postTags.map((tag) => ({ ...tag, post_id: obj.id }));
+          createPostTags(tagsArr).then(() => {
+          });
         });
       });
-    });
+    } else {
+      const newPost = { ...input, user_id: Number(token) };
+      createPost(newPost).then((postObj) => {
+        deletePostTagsByPostId(postObj.id).then(() => {
+          const tagsArr = postTags.map((tag) => ({ ...tag, post_id: postObj.id }));
+          createPostTags(tagsArr).then(() => {
+          });
+        });
+      });
+    }
   };
 
   useEffect(() => {
@@ -90,16 +97,16 @@ function PostForm({ obj }) {
       <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>Title</Form.Label>
-          <Form.Control type="text" onChange={handleChange} placeholder="Title goes here" name="title" value={input.title} />
+          <Form.Control type="text" onChange={handleChange} placeholder="Title goes here" name="title" value={input.title} required />
 
           <Form.Label>Image URL</Form.Label>
-          <Form.Control type="text" onChange={handleChange} placeholder="Enter your Image URL" name="image_url" value={input.image_url} />
+          <Form.Control type="text" onChange={handleChange} placeholder="Enter your Image URL" name="image_url" value={input.image_url} required />
 
           <Form.Label>Article</Form.Label>
-          <Form.Control as="textarea" onChange={handleChange} placeholder="Main content goes here" rows={3} name="content" value={input.content} />
+          <Form.Control as="textarea" onChange={handleChange} placeholder="Main content goes here" rows={3} name="content" value={input.content} required />
 
           <Form.Label>Category</Form.Label>
-          <Form.Select aria-label="Default select example" name="category_id" onChange={handleChange}>
+          <Form.Select aria-label="Default select example" name="category_id" onChange={handleChange} required>
             <option value="">Select a Category</option>
             {categories?.map((cat) => (
               <option key={cat.id} selected={cat.id === input.category_id} value={cat.id}>{cat.label}</option>
@@ -115,12 +122,12 @@ function PostForm({ obj }) {
                 name="tag"
                 value={tag.id}
                 onChange={handleTagChange}
-                checked={postTags.find((postTag) => postTag.tag_id === tag.id) !== undefined}
+                checked={postTags?.find((postTag) => postTag.tag_id === tag.id) !== undefined}
               />
             </div>
           ))}
         </Form.Group>
-        <Button className="submit-btn" type="submit" onClick={handleSubmit} variant="success">Submit</Button>
+        <Button className="submit-btn" type="submit" onClick={handleSubmit} variant="success">{obj.id ? 'Update' : 'Submit'}</Button>
       </Form>
     </>
   );
@@ -140,7 +147,7 @@ PostForm.propTypes = {
 };
 
 PostForm.defaultProps = {
-  obj: initialPostState,
+  obj: initialState,
 };
 
 export default PostForm;

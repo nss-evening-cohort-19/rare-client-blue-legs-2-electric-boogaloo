@@ -1,4 +1,4 @@
-import { createPostTag, deletePostTag, getPostTagsByPostId } from './postTags';
+import { createPostTag, deletePostTag, getPostTagsByPostId } from './postTagsData';
 
 const deletePostTagsByPostId = (postId) => new Promise((resolve, reject) => {
   getPostTagsByPostId(postId).then((tagsArr) => {

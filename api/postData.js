@@ -4,7 +4,7 @@ const dbUrl = 'http://localhost:8088/posts';
 
 const getPostById = (id) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/${id}`)
-    .then((postObj) => (postObj))
+    .then((postObj) => resolve(postObj.data))
     .catch(reject);
 });
 
@@ -15,7 +15,7 @@ const createPost = (postObj) => new Promise((resolve, reject) => {
 });
 
 const updatePost = (postObj) => new Promise((resolve, reject) => {
-  axios.put(`${dbUrl}`, postObj)
+  axios.put(`${dbUrl}/${postObj.id}`, postObj)
     .then(resolve)
     .catch(reject);
 });

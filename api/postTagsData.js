@@ -4,7 +4,7 @@ const dbUrl = 'http://localhost:8088/posttags';
 
 const getPostTagsByPostId = (postId) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}?post_id=${postId}`)
-    .then((tagsArr) => resolve(tagsArr))
+    .then((tagsArr) => resolve(Object.values(tagsArr.data)))
     .catch(reject);
 });
 

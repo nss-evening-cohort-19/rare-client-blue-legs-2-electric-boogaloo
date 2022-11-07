@@ -16,7 +16,7 @@ const initialPostState = {
   image_url: '',
   content: '',
   publication_date: new Date().toLocaleDateString(),
-  approved: '',
+  approved: true,
 };
 
 function PostForm({ obj }) {
@@ -47,9 +47,10 @@ function PostForm({ obj }) {
       setPostTags((prevState) => {
         const prevCopy = prevState;
         const index = prevCopy.findIndex((postTag) => postTag.tag_id === Number(value));
-        prevCopy.splice(index, 1);
-        return prevCopy;
+        const returnArr = prevCopy.splice(index, 1);
+        return returnArr;
       });
+      getTheContent();
     }
   };
 
@@ -109,7 +110,7 @@ function PostForm({ obj }) {
             <div key={tag.id} className="mb-3">
               <Form.Check
                 type="checkbox"
-                id="default-checkbox"
+                id="tagCheck"
                 label={tag.label}
                 name="tag"
                 value={tag.id}

@@ -5,17 +5,19 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
+import { deleteComment } from '../api/commentsData';
+import { deletePost } from '../api/postData';
 
 export default function PostCard({
   postObject, router, onUpdate,
 }) {
   const deleteThisPost = () => {
-    /* if (window.confirm('Delete this post?')) {
-      getPostComments(postObject.id).then(() => {
-        deletePostComments(postObject.id).then(() => onUpdate());
+    if (window.confirm('Delete this post?')) {
+      const commentsToDelete = postObject.comments.map((comment) => deleteComment(comment.id));
+      Promise.all(commentsToDelete).then(() => {
+        deletePost(postObject.id).then(() => onUpdate());
       });
-    } */
-    onUpdate();
+    }
   };
 
   // eslint-disable-next-line react/prop-types
@@ -59,6 +61,12 @@ PostCard.propTypes = {
     image_url: PropTypes.string,
     author: PropTypes.string,
     publication_date: PropTypes.string,
+    comments: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      author_id: PropTypes.number,
+      post_id: PropTypes.number,
+      content: PropTypes.string,
+    })),
     post_reactions: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
       user_id: PropTypes.number,

@@ -37,6 +37,14 @@ body {
   padding: 10px;
 }
 
+.commentCard {
+  width: 75%;
+  padding-left: 10px; 
+  display:flex;
+  border-bottom: solid 1px black;
+  padding: 6px;
+  background-color: white;
+}
 .postCard {
   display: flex;
   width: 75%;
@@ -79,4 +87,13 @@ body {
   height: auto;
   margin: auto;
   display: block;
+}
+
+.commentForm {
+  margin-top: 2px;
+  width: 75%;
+}
+
+.commentSubmitButton {
+  margin-bottom: 5px;
 }

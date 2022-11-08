@@ -97,3 +97,33 @@ body {
 .commentSubmitButton {
   margin-bottom: 5px;
 }
+
+/* Profile Card */
+.user-card{
+  display: flex;
+  flex-direction: row;
+}
+.user-card-left{
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+.user-card-right{
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.user-profile-card-img{
+  height: 300px;
+  width: auto;
+  object-fit: cover;
+}
+.user-card-email-date{
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* */

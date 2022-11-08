@@ -3,17 +3,18 @@ import { useRouter } from 'next/router';
 import ProfileCard from '../../components/ProfileCard';
 import getUserByUid from '../../api/userData';
 import { getPostsbyUid } from '../../api/postData';
-import PostCard from '../../components/PostCard';
+import AllPostComponent from '../../components/AllPostComponent';
 
 export default function UserPage() {
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
   const router = useRouter();
-  const { uid } = router.query;
+  const { userId } = router.query;
 
   const getTheContent = () => {
-    getUserByUid(uid).then(setUser);
-    getPostsbyUid(uid).then(setPosts);
+    getUserByUid(userId).then(setUser);
+    getPostsbyUid(userId).then(setPosts);
+    console.warn(userId);
   };
 
   useEffect(() => {
@@ -24,8 +25,8 @@ export default function UserPage() {
     <>
       <ProfileCard obj={user} />
       <div>
-        {posts.map((post) => (
-          <PostCard postObj={post} />
+        {posts?.map((post) => (
+          <AllPostComponent obj={post} />
         ))}
       </div>
     </>

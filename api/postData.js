@@ -30,7 +30,7 @@ const getSinglePost = (postId) => fetch(`http://localhost:8088/posts/${postId}`)
   .then((res) => res.json());
 
 const getPostsbyUid = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}?user_id=${uid}`)
+  axios.get(`${dbUrl}?author_id=${uid}`)
     .then((postsArr) => resolve(Object.values(postsArr.data)))
     .catch(reject);
 });

@@ -7,7 +7,7 @@ export default function ProfileCard({ obj }) {
     <Card className="user-card">
       <div className="user-card-left">
         <div className="user-card-img-name">
-          <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+          <Card.Img className="user-profile-card-img" variant="top" src={obj.profile_image_url} />
           <Card.Title>{obj.username}</Card.Title>
         </div>
       </div>

@@ -11,6 +11,20 @@ const deleteComment = (commentId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const updateComment = (commentObj) => new Promise((resolve, reject) => {
+  axios.put(`${dbUrl}/comments/${commentObj.id}`, commentObj)
+    .then(resolve)
+    .catch(reject);
+});
+
+const createComment = (commentObj) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/comments`, commentObj)
+    .then(resolve)
+    .catch(reject);
+});
+
 const getPost = (postId) => fetch(`${dbUrl}/posts/${postId}`).then((res) => res.json());
 
-export { getCommentsByPost, deleteComment, getPost };
+export {
+  getCommentsByPost, deleteComment, getPost, updateComment, createComment,
+};

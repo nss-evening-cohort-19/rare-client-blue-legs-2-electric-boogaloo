@@ -4,10 +4,12 @@ import { useRouter } from 'next/router';
 import { getPostById } from '../../api/postData';
 import AllPostComponent from '../../components/AllPostComponent';
 import CommentCard from '../../components/CommentCard';
+import CommentForm from '../../components/CommentForm';
 
 export default function SinglePostPage() {
   const [post, setPost] = useState({});
   const router = useRouter();
+  const [commentToUpdate, setCommentToUpdate] = useState({});
   const { postId } = router.query;
 
   const getThePost = () => {
@@ -22,9 +24,12 @@ export default function SinglePostPage() {
     <div>
       <AllPostComponent obj={post} />
       <div>
+        <div>
+          <CommentForm commentObj={commentToUpdate} postId={post.id} />
+        </div>
         {
           post.comments?.map((comment) => (
-            <CommentCard commentObj={comment} key={comment.id} onUpdate={getThePost} />
+            <CommentCard commentObj={comment} key={comment.id} onUpdate={getThePost} setCommentToUpdate={setCommentToUpdate} />
           ))
           }
       </div>

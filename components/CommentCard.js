@@ -6,7 +6,7 @@ import {
 } from 'react-icons/fa';
 import { getCommentsByPost, deleteComment } from '../api/commentsData';
 
-function CommentCard({ commentObj, onUpdate }) {
+function CommentCard({ commentObj, onUpdate, setCommentToUpdate }) {
   const [token, setToken] = useState(null);
 
   const deleteThisComment = () => {
@@ -38,7 +38,7 @@ function CommentCard({ commentObj, onUpdate }) {
               aria-label="edit"
               className="cardDropDownItem"
               onClick={() => {
-                // setCommentToUpdate(commentObj);
+                setCommentToUpdate(commentObj);
                 scroll();
               }}
             ><FaPencilAlt className="dropIcon" /> Edit Comment
@@ -59,6 +59,7 @@ CommentCard.propTypes = {
     content: string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  setCommentToUpdate: PropTypes.func.isRequired,
 };
 
 export default CommentCard;

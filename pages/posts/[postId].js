@@ -19,7 +19,7 @@ export default function SinglePostPage() {
 
   return (
     <div>
-      <PostCard router={router} postObject={post} onUpdate={getThePost} />
+      <PostCard router={router.asPath} postObject={post} onUpdate={getThePost} />
     </div>
   );
 }

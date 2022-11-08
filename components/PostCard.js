@@ -18,16 +18,19 @@ export default function PostCard({
     onUpdate();
   };
 
+  const reactionCount = postObject.post_reactions?.length;
+
   return (
     <div>
       <Card className="postCard">
         <Card.Body className="postCardBody">
           <Card.Title className="postCardTitle">{postObject.title}</Card.Title>
           <Image className="postCardImage" src={postObject.image_url} />
-          <Card.Text className="postPubDate">{postObject.publication_date}</Card.Text>
+          <Card.Text className="postPubDate">Publication Date: {postObject.publication_date}</Card.Text>
           <Card.Text className="postAuthor">Author: {postObject.author}</Card.Text>
+          <Card.Text className="reactionCount">Reaction Count: {reactionCount}</Card.Text>
           <div className="postCardButtons">
-            {router === '/myPosts' ? (
+            {router === `/posts/${postObject.id}` ? (
               <div className="postCardButtons">
                 <Link href={`/post/edit/${postObject.id}`} passHref>
                   <IconButton aria-label="edit" className="edit-btn">
@@ -53,6 +56,7 @@ PostCard.propTypes = {
     image_url: PropTypes.string,
     author: PropTypes.string,
     publication_date: PropTypes.string,
+    post_reactions: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
   router: PropTypes.string.isRequired,

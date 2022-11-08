@@ -36,3 +36,12 @@ body {
   margin: 0;
   padding: 10px;
 }
+
+.commentCard {
+  width: 100%;
+  padding-left: 10px; 
+  display:flex;
+  border-bottom: solid 1px black;
+  padding: 6px;
+
+}

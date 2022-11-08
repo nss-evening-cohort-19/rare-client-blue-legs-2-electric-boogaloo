@@ -4,9 +4,9 @@ import { Card, Dropdown, DropdownButton } from 'react-bootstrap';
 import {
   FaEllipsisV, FaTrashAlt, FaPencilAlt,
 } from 'react-icons/fa';
-import getCommentsByPost, { deleteComment } from '../api/commentsData';
+import { getCommentsByPost, deleteComment } from '../api/commentsData';
 
-function CommentCard({ commentObj, onUpdate, setCommentToUpdate }) {
+function CommentCard({ commentObj, onUpdate }) {
   const [token, setToken] = useState(null);
 
   const deleteThisComment = () => {
@@ -18,8 +18,9 @@ function CommentCard({ commentObj, onUpdate, setCommentToUpdate }) {
   };
 
   useEffect(() => {
-    setToken(localStorage.getItem('auth_token'));
-  }, []);
+    const theToken = localStorage.getItem('auth_token');
+    setToken(parseInt(theToken, 10));
+  }, [token]);
 
   const scroll = () => {
     window.scrollTo(1, 0);
@@ -37,7 +38,7 @@ function CommentCard({ commentObj, onUpdate, setCommentToUpdate }) {
               aria-label="edit"
               className="cardDropDownItem"
               onClick={() => {
-                setCommentToUpdate(commentObj);
+                // setCommentToUpdate(commentObj);
                 scroll();
               }}
             ><FaPencilAlt className="dropIcon" /> Edit Comment
@@ -58,7 +59,6 @@ CommentCard.propTypes = {
     content: string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
-  setCommentToUpdate: PropTypes.func.isRequired,
 };
 
 export default CommentCard;

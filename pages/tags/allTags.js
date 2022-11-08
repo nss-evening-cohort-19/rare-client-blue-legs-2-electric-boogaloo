@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { React, useEffect, useState } from 'react';

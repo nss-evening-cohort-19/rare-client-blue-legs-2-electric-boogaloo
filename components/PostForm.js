@@ -92,7 +92,7 @@ function PostForm({ obj }) {
   useEffect(() => {
     setToken(localStorage.getItem('auth_token'));
     getTheContent();
-  }, [obj]);
+  }, [obj, router]);
 
   return (
     <>

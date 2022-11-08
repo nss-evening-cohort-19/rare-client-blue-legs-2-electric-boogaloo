@@ -13,15 +13,14 @@ export default function ProfileCard({ obj }) {
       </div>
       <div className="user-card-right">
         <div className="user-card-first-last">
-          <Card.Title>Card Title</Card.Title>
-          <Card.Title>Card Title</Card.Title>
+          <Card.Title>{obj.first_name} {obj.last_name}</Card.Title>
         </div>
         <div className="user-card-email-date">
-          <Card.Text>Email</Card.Text>
-          <Card.Text>Author Since:</Card.Text>
+          <Card.Text>{obj.email}</Card.Text>
+          <Card.Text>Author Since: {obj.created_on}</Card.Text>
         </div>
         <div className="user-bio">
-          <Card.Text>Bio</Card.Text>
+          <Card.Text>{obj.bio}</Card.Text>
         </div>
       </div>
     </Card>

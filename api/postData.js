@@ -26,6 +26,9 @@ const getAllPosts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSinglePost = (postId) => fetch(`http://localhost:8088/posts/${postId}`)
+  .then((res) => res.json());
+
 export {
-  getAllPosts, getPostById, createPost, updatePost,
+  getAllPosts, getPostById, createPost, updatePost, getSinglePost,
 };

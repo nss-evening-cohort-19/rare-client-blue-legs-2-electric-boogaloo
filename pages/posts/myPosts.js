@@ -1,7 +1,5 @@
-import React from 'react';
-
-export default function myPostsPage() {
+export default function MyPostsPage() {
   return (
-    <div>My Posts Page</div>
+    <div>my posts page</div>
   );
 }

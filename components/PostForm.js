@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { getAllCategories } from '../api/categoryData';
 import { getAllTags } from '../api/tagsData';
 import { getPostTagsByPostId } from '../api/postTagsData';
@@ -25,6 +26,7 @@ function PostForm({ obj }) {
   const [postTags, setPostTags] = useState([]);
   const [tags, setTags] = useState([]);
   const [token, setToken] = useState(null);
+  const router = useRouter();
 
   const getTheContent = () => {
     if (obj.id) {
@@ -84,6 +86,7 @@ function PostForm({ obj }) {
         });
       });
     }
+    router.push('/posts/myPosts');
   };
 
   useEffect(() => {

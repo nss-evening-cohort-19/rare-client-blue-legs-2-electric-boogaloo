@@ -1,21 +1,33 @@
-// import React from 'react';
-// import { useRouter } from 'next/router';
-// import ProfileCard from '../../components/ProfileCard';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import ProfileCard from '../../components/ProfileCard';
+import getUserByUid from '../../api/userData';
+import { getPostsbyUid } from '../../api/postData';
+import PostCard from '../../components/PostCard';
 
-// export default function UserPage() {
-//   const [user, setUser] = useState({});
-//   const [posts, setPosts] = useEffect([]);
-//   const router = useRouter();
-//   const { uid } = router.query;
+export default function UserPage() {
+  const [user, setUser] = useState({});
+  const [posts, setPosts] = useState([]);
+  const router = useRouter();
+  const { uid } = router.query;
 
-//   const getTheContent = () => {
-//     getUser
-//   }
-//   useEffect(() => {
-//     getTheContent();
-//   }, [router]);
+  const getTheContent = () => {
+    getUserByUid(uid).then(setUser);
+    getPostsbyUid(uid).then(setPosts);
+  };
 
-//   return (
-//     <ProfileCard obj={user} />
-//   );
-// }
+  useEffect(() => {
+    getTheContent();
+  }, [router]);
+
+  return (
+    <>
+      <ProfileCard obj={user} />
+      <div>
+        {posts.map((post) => (
+          <PostCard postObj={post} />
+        ))}
+      </div>
+    </>
+  );
+}

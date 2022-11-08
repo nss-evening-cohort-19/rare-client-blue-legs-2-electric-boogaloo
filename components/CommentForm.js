@@ -61,7 +61,7 @@ function CommentForm({ postId, commentObj }) {
     <>
       <Form onSubmit={handleSubmit}>
 
-        <FloatingLabel controlId="floatingInput3" label="Add a comment.." className="mb-3">
+        <FloatingLabel controlId="floatingInput3" label="Add a comment.." className="mb-3 commentForm">
           <Form.Control
             type="text"
             placeholder="Add a comment..."
@@ -72,7 +72,7 @@ function CommentForm({ postId, commentObj }) {
           />
         </FloatingLabel>
 
-        <Button type="submit">{comment?.id ? 'Update' : ''} Comment</Button>
+        <Button className="commentSubmitButton" type="submit">{comment?.id ? 'Update' : ''} Comment</Button>
       </Form>
     </>
 

@@ -18,6 +18,7 @@ export default function PostCard({
     onUpdate();
   };
 
+  // eslint-disable-next-line react/prop-types
   const reactionCount = postObject.post_reactions?.length;
 
   return (
@@ -27,12 +28,14 @@ export default function PostCard({
           <Card.Title className="postCardTitle">{postObject.title}</Card.Title>
           <Image className="postCardImage" src={postObject.image_url} />
           <Card.Text className="postPubDate">Publication Date: {postObject.publication_date}</Card.Text>
-          <Card.Text className="postAuthor">Author: {postObject.author}</Card.Text>
+          <Link href={`/user/${postObject.user_id}`} passHref>
+            <Card.Text className="postAuthor">Author: {postObject.author}</Card.Text>
+          </Link>
           <Card.Text className="reactionCount">Reaction Count: {reactionCount}</Card.Text>
           <div className="postCardButtons">
             {router === `/posts/${postObject.id}` ? (
               <div className="postCardButtons">
-                <Link href={`/post/edit/${postObject.id}`} passHref>
+                <Link href={`/posts/edit/${postObject.id}`} passHref>
                   <IconButton aria-label="edit" className="edit-btn">
                     <EditIcon style={{ color: 'black' }} />
                   </IconButton>
@@ -56,9 +59,14 @@ PostCard.propTypes = {
     image_url: PropTypes.string,
     author: PropTypes.string,
     publication_date: PropTypes.string,
-    post_reactions: PropTypes.string,
+    post_reactions: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      reaction_id: PropTypes.number,
+      post_id: PropTypes.number,
+    })),
+    user_id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
   router: PropTypes.string.isRequired,
-/*   reactions: PropTypes.string.isRequired,
- */ };
+};

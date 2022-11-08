@@ -15,6 +15,7 @@ export default function SinglePostPage() {
 
   useEffect(() => {
     getThePost();
+    console.warn(post);
   }, [router]);
 
   return (

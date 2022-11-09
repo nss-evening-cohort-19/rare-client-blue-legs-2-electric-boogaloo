@@ -26,6 +26,12 @@ const getAllPosts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getPostsByAuthorId = (authorId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}?author_id=${authorId}`)
+    .then((response) => resolve((response.data)))
+    .catch(reject);
+});
+
 const getSinglePost = (postId) => fetch(`http://localhost:8088/posts/${postId}`)
   .then((res) => res.json());
 
@@ -37,4 +43,5 @@ const getPostsbyUid = (uid) => new Promise((resolve, reject) => {
 
 export {
   getAllPosts, getPostById, createPost, updatePost, getSinglePost, getPostsbyUid,
+  getPostsByAuthorId,
 };

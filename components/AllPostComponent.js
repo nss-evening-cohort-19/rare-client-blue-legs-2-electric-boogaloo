@@ -9,9 +9,8 @@ export default function AllPostComponent({ obj }) {
       <Card.Body>
         <Card.Title>{obj.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{obj.author}</Card.Subtitle>
-        <Card.Text>
-          {obj.content}
-        </Card.Text>
+        <Card.Subtitle className="mb-2 text-muted">{obj.category.label}</Card.Subtitle>
+        <Card.Text>{obj.content}</Card.Text>
         <Link href={`/posts/${obj.id}`} passHref>
           Link to Card
         </Link>
@@ -26,5 +25,9 @@ AllPostComponent.propTypes = {
     title: string,
     author: string,
     content: string,
+    category: PropTypes.shape({
+      id: number,
+      label: string,
+    }),
   }).isRequired,
 };

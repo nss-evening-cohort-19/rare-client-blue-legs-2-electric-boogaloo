@@ -96,3 +96,9 @@ body {
 .commentSubmitButton {
   margin-bottom: 5px;
 }
+
+.addButton {
+  text-align: right;
+  padding-right: 50px;
+  padding-top: 10px;
+}

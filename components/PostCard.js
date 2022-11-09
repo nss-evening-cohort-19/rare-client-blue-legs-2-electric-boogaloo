@@ -5,18 +5,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
-import { deleteComment } from '../api/commentsData';
-import { deletePost } from '../api/postData';
+import { deletePostAndStuff } from '../api/mergedData';
 
 export default function PostCard({
   postObject, router, onUpdate,
 }) {
   const deleteThisPost = () => {
     if (window.confirm('Delete this post?')) {
-      const commentsToDelete = postObject.comments.map((comment) => deleteComment(comment.id));
-      Promise.all(commentsToDelete).then(() => {
-        deletePost(postObject.id).then(() => onUpdate());
-      });
+      deletePostAndStuff(postObject).then(() => onUpdate());
     }
   };
 

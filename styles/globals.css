@@ -103,3 +103,7 @@ body {
   padding-right: 50px;
   padding-top: 10px;
 }
+
+.loginRegisterButtons {
+  color: white;
+}

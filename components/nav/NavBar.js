@@ -48,14 +48,14 @@ function AppNavBar({ token, setToken }) {
               Logout
             </Button>
           ) : (
-            <>
+            <div className="loginRegisterButtons">
               <Link passHref href="/register">
                 <Nav.Link>Register</Nav.Link>
               </Link>
               <Link passHref href="/login">
                 <Nav.Link>Login</Nav.Link>
               </Link>
-            </>
+            </div>
           )}
         </Navbar.Collapse>
       </Container>

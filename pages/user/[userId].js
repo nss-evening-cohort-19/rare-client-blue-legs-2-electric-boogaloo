@@ -14,7 +14,6 @@ export default function UserPage() {
   const getTheContent = () => {
     getUserByUid(userId).then(setUser);
     getPostsbyUid(userId).then(setPosts);
-    console.warn(userId);
   };
 
   useEffect(() => {
@@ -26,7 +25,7 @@ export default function UserPage() {
       <ProfileCard obj={user} />
       <div>
         {posts?.map((post) => (
-          <AllPostComponent obj={post} />
+          <AllPostComponent obj={post} key={post.id} onUpdate={getTheContent} />
         ))}
       </div>
     </>

@@ -98,7 +98,6 @@ body {
   margin-bottom: 5px;
 }
 
-<<<<<<< HEAD
 /* Profile Card */
 .user-card{
   display: flex;
@@ -128,10 +127,8 @@ body {
 }
 
 /* */
-=======
 .addButton {
   text-align: right;
   padding-right: 50px;
   padding-top: 10px;
 }
->>>>>>> development

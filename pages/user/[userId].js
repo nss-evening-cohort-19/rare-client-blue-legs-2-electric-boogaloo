@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ProfileCard from '../../components/ProfileCard';
 import getUserByUid from '../../api/userData';
-import { getPostsbyUid } from '../../api/postData';
-import AllPostComponent from '../../components/AllPostComponent';
+import { getPostsByAuthorId } from '../../api/postData';
+import PostCard from '../../components/PostCard';
 
 export default function UserPage() {
   const [user, setUser] = useState({});
@@ -13,7 +13,7 @@ export default function UserPage() {
 
   const getTheContent = () => {
     getUserByUid(userId).then(setUser);
-    getPostsbyUid(userId).then(setPosts);
+    getPostsByAuthorId(userId).then(setPosts);
   };
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function UserPage() {
       <ProfileCard obj={user} />
       <div>
         {posts?.map((post) => (
-          <AllPostComponent obj={post} key={post.id} onUpdate={getTheContent} />
+          <PostCard postObject={post} key={post.id} router={router.asPath} onUpdate={getTheContent} />
         ))}
       </div>
     </>

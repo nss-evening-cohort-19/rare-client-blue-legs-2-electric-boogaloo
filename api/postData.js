@@ -35,13 +35,7 @@ const getPostsByAuthorId = (authorId) => new Promise((resolve, reject) => {
 const getSinglePost = (postId) => fetch(`http://localhost:8088/posts/${postId}`)
   .then((res) => res.json());
 
-const getPostsbyUid = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}?author_id=${uid}`)
-    .then((postsArr) => resolve(Object.values(postsArr.data)))
-    .catch(reject);
-});
-
 export {
-  getAllPosts, getPostById, createPost, updatePost, getSinglePost, getPostsbyUid,
+  getAllPosts, getPostById, createPost, updatePost, getSinglePost,
   getPostsByAuthorId,
 };

@@ -22,9 +22,6 @@ function AppNavBar({ token, setToken }) {
           <Nav className="me-auto">
             { token ? (
               <>
-                <Link passHref href="/posts/allPosts">
-                  <Nav.Link>All Posts</Nav.Link>
-                </Link>
                 <Link passHref href="/posts/myPosts">
                   <Nav.Link>My Posts</Nav.Link>
                 </Link>

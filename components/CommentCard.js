@@ -1,9 +1,8 @@
 import PropTypes, { number, string } from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Card, Dropdown, DropdownButton } from 'react-bootstrap';
-import {
-  FaEllipsisV, FaTrashAlt, FaPencilAlt,
-} from 'react-icons/fa';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { getCommentsByPost, deleteComment } from '../api/commentsData';
 
 function CommentCard({ commentObj, onUpdate, setCommentToUpdate }) {
@@ -33,7 +32,7 @@ function CommentCard({ commentObj, onUpdate, setCommentToUpdate }) {
       </Card.Body>
       { token === commentObj.author_id ? (
         <div>
-          <DropdownButton align="end" className="cardDropdown" title={<FaEllipsisV className="droptoggleicon" />}>
+          <DropdownButton align="end" className="cardDropdown">
             <Dropdown.Item
               aria-label="edit"
               className="cardDropDownItem"
@@ -41,9 +40,9 @@ function CommentCard({ commentObj, onUpdate, setCommentToUpdate }) {
                 setCommentToUpdate(commentObj);
                 scroll();
               }}
-            ><FaPencilAlt className="dropIcon" /> Edit Comment
+            ><EditIcon className="dropIcon" /> Edit Comment
             </Dropdown.Item>
-            <Dropdown.Item aria-label="delete" className="cardDropDownItem" onClick={deleteThisComment}><FaTrashAlt className="dropIcon" /> Delete Comment</Dropdown.Item>
+            <Dropdown.Item aria-label="delete" className="cardDropDownItem" onClick={deleteThisComment}><DeleteIcon className="dropIcon" /> Delete Comment</Dropdown.Item>
           </DropdownButton>
         </div>
       ) : '' }

@@ -8,13 +8,15 @@ import PropTypes from 'prop-types';
 import { deletePostAndStuff } from '../api/mergedData';
 
 export default function PostCard({
-  postObject, router, onUpdate,
+  postObject, onUpdate,
 }) {
   const deleteThisPost = () => {
     if (window.confirm('Delete this post?')) {
       deletePostAndStuff(postObject).then(() => onUpdate());
     }
   };
+
+  const userId = localStorage.getItem('authToken');
 
   // eslint-disable-next-line react/prop-types
   const reactionCount = postObject.post_reactions?.length;
@@ -31,7 +33,7 @@ export default function PostCard({
           </Link>
           <Card.Text className="reactionCount">Reaction Count: {reactionCount}</Card.Text>
           <div className="postCardButtons">
-            {router.asPath === `/posts/${postObject.id}` ? (
+            {userId === postObject.user_id ? (
               <div className="postCardButtons">
                 <Link href={`/posts/edit/${postObject.id}`} passHref>
                   <IconButton aria-label="edit" className="edit-btn">
@@ -72,5 +74,4 @@ PostCard.propTypes = {
     user_id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
-  router: PropTypes.string.isRequired,
 };

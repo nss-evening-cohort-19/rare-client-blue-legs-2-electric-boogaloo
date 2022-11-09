@@ -12,6 +12,7 @@ export default function MyPostsPage() {
 
   const getMyPosts = () => {
     getPostsByAuthorId((Number(token))).then(setPosts);
+    console.warn(posts);
   };
 
   useEffect(() => {

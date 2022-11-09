@@ -16,6 +16,10 @@ export default function SinglePostPage() {
     getSinglePost(postId).then(setPost);
   };
 
+  const onUpdate = () => {
+    router.push('/posts/myPosts');
+  };
+
   useEffect(() => {
     getThePost();
   }, [router]);
@@ -27,7 +31,7 @@ export default function SinglePostPage() {
         <CommentForm commentObj={commentToUpdate} postId={post.id} />
         {
           post.comments?.map((comment) => (
-            <CommentCard commentObj={comment} key={comment.id} onUpdate={getThePost} setCommentToUpdate={setCommentToUpdate} />
+            <CommentCard commentObj={comment} key={comment.id} onUpdate={onUpdate} setCommentToUpdate={setCommentToUpdate} />
           ))
           }
       </div>

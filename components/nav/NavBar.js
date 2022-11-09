@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import AddIcon from '@mui/icons-material/Add';
 import {
   Container, Nav, Navbar, Button,
 } from 'react-bootstrap';
@@ -37,16 +38,23 @@ function AppNavBar({ token, setToken }) {
             )}
           </Nav>
           {token ? (
-            <Button
-              type="button"
-              className="d-flex"
-              onClick={() => {
-                setToken('');
-                navigate.push('/login');
-              }}
-            >
-              Logout
-            </Button>
+            <>
+              <div className="addIcon">
+                <Link passHref href="/posts/new">
+                  <AddIcon />
+                </Link>
+              </div>
+              <Button
+                type="button"
+                className="d-flex"
+                onClick={() => {
+                  setToken('');
+                  navigate.push('/login');
+                }}
+              >
+                Logout
+              </Button>
+            </>
           ) : (
             <div className="loginRegisterButtons">
               <Link passHref href="/register">

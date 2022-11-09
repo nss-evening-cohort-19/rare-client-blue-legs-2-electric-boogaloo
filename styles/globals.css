@@ -107,3 +107,8 @@ body {
 .loginRegisterButtons {
   color: white;
 }
+
+.addIcon {
+  background-color: white;
+  margin-right: 20px;
+}

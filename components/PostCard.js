@@ -35,7 +35,7 @@ export default function PostCard({
           </Link>
           <Card.Text className="reactionCount">Reaction Count: {reactionCount}</Card.Text>
           <div className="postCardButtons">
-            {router === `/posts/${postObject.id}` ? (
+            {router.asPath === `/posts/${postObject.id}` ? (
               <div className="postCardButtons">
                 <Link href={`/posts/edit/${postObject.id}`} passHref>
                   <IconButton aria-label="edit" className="edit-btn">

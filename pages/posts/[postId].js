@@ -22,7 +22,7 @@ export default function SinglePostPage() {
 
   return (
     <div>
-      <PostCard router={router.asPath} postObject={post} onUpdate={getThePost} />
+      <PostCard router={router} postObject={post} onUpdate={getThePost} />
       <div>
         <CommentForm commentObj={commentToUpdate} postId={post.id} />
         {

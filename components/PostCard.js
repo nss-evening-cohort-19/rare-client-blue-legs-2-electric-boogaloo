@@ -20,7 +20,6 @@ export default function PostCard({
 
   // eslint-disable-next-line react/prop-types
   const reactionCount = postObject.post_reactions?.length;
-  console.warn(postObject);
 
   return (
     <div>

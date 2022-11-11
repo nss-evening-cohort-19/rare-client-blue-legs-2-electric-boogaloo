@@ -8,18 +8,19 @@ import PropTypes from 'prop-types';
 import { deletePostAndStuff } from '../api/mergedData';
 
 export default function PostCard({
-  postObject, onUpdate,
+  postObject, onUpdate, userToken,
 }) {
   const deleteThisPost = () => {
-    if (window.confirm('Delete this post?')) {
-      deletePostAndStuff(postObject).then(() => onUpdate());
+    if (window.confirm('Delete This Post?')) {
+      deletePostAndStuff(postObject).then(() => {
+        onUpdate();
+      });
     }
   };
 
-  const userId = localStorage.getItem('authToken');
-
   // eslint-disable-next-line react/prop-types
   const reactionCount = postObject.post_reactions?.length;
+  console.warn(postObject);
 
   return (
     <div>
@@ -33,7 +34,7 @@ export default function PostCard({
           </Link>
           <Card.Text className="reactionCount">Reaction Count: {reactionCount}</Card.Text>
           <div className="postCardButtons">
-            {userId === postObject.user_id ? (
+            {parseInt(userToken, 10) === postObject.user_id ? (
               <div className="postCardButtons">
                 <Link href={`/posts/edit/${postObject.id}`} passHref>
                   <IconButton aria-label="edit" className="edit-btn">
@@ -59,12 +60,6 @@ PostCard.propTypes = {
     image_url: PropTypes.string,
     author: PropTypes.string,
     publication_date: PropTypes.string,
-    comments: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      author_id: PropTypes.number,
-      post_id: PropTypes.number,
-      content: PropTypes.string,
-    })),
     post_reactions: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
       user_id: PropTypes.number,
@@ -74,4 +69,5 @@ PostCard.propTypes = {
     user_id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  userToken: PropTypes.number.isRequired,
 };

@@ -23,9 +23,12 @@ const deletePostAndStuff = async (postObject) => {
   const commentsToDelete = postObject.comments.map((comment) => deleteComment(comment.id));
   const postTagsToDelete = postObject.post_tags.map((postTag) => deletePostTag(postTag.id));
   const postReactionsToDelete = postObject.post_reactions.map((postReaction) => deletePostReaction(postReaction.id));
-  await Promise.all(commentsToDelete);
-  await Promise.all(postTagsToDelete);
-  await Promise.all(postReactionsToDelete).then(deletePost(postObject.id));
+  await Promise.all(commentsToDelete).then(() => {
+    Promise.all(postTagsToDelete);
+  }).then(() => {
+    Promise.all(postReactionsToDelete);
+  });
+  return deletePost(postObject.id);
 };
 
 // eslint-disable-next-line import/prefer-default-export

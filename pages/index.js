@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAllPosts } from '../api/postData';
 import AllPostComponent from '../components/AllPostComponent';
 import Search from '../components/Search';
+import SortByComponent from '../components/SortByComponent';
 
 export default function AllPostsPage() {
   const [posts, setAllPosts] = useState();
@@ -21,6 +22,7 @@ export default function AllPostsPage() {
   return (
     <>
       <Search posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} />
+      <SortByComponent posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} />
       {
         filteredPosts?.map((postObject) => (
           <AllPostComponent obj={postObject} key={postObject.id} />

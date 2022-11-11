@@ -1,6 +1,9 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function ProfileCard({ obj }) {
   return (
@@ -14,6 +17,11 @@ export default function ProfileCard({ obj }) {
       <div className="user-card-right">
         <div className="user-card-first-last">
           <Card.Title>{obj.first_name} {obj.last_name}</Card.Title>
+          <Link className="" href={`/user/edit/${obj.id}`} passHref>
+            <IconButton aria-label="edit" className="edit-btn">
+              <EditIcon style={{ color: 'black' }} />
+            </IconButton>
+          </Link>
         </div>
         <div className="user-card-email-date">
           <Card.Text>{obj.email}</Card.Text>
@@ -29,6 +37,7 @@ export default function ProfileCard({ obj }) {
 
 ProfileCard.propTypes = {
   obj: PropTypes.shape({
+    id: PropTypes.number,
     username: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,

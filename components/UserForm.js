@@ -27,7 +27,6 @@ function UserForm({ setToken, userObj }) {
       ...prevState,
       [name]: value,
     }));
-    console.warn(input);
   };
 
   const handleSubmit = (e) => {

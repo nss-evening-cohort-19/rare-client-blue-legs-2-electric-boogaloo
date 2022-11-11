@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ProfileCard from '../../components/ProfileCard';
-import getUserByUid from '../../api/userData';
+import { getUserByUid } from '../../api/userData';
 import { getPostsByAuthorId } from '../../api/postData';
 import PostCard from '../../components/PostCard';
 

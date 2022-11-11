@@ -4,18 +4,17 @@ import { getPostsByCategory } from '../../../api/categoryData';
 import PostCard from '../../../components/PostCard';
 
 export default function ViewPostsByCategory() {
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([]);
   const router = useRouter();
-  const { id } = router.query;
+  const { categoryId } = router.query;
 
   const getPosts = () => {
-    getPostsByCategory(id).then(setPosts);
+    getPostsByCategory(categoryId).then(setPosts);
   };
 
   useEffect(() => {
     getPosts();
-  }, [router]);
-  console.warn(posts);
+  }, [categoryId]);
 
   return (
     <div>

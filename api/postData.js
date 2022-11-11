@@ -36,5 +36,6 @@ const getSinglePost = (postId) => fetch(`http://localhost:8088/posts/${postId}`)
   .then((res) => res.json());
 
 export {
-  getAllPosts, getPostById, createPost, updatePost, getSinglePost, getPostsByAuthorId,
+  getAllPosts, getPostById, createPost, updatePost, getSinglePost,
+  getPostsByAuthorId,
 };

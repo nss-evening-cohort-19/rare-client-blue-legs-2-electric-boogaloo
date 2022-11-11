@@ -11,6 +11,7 @@ export default function SinglePostPage() {
   const router = useRouter();
   const [commentToUpdate, setCommentToUpdate] = useState({});
   const { postId } = router.query;
+  const [token, setToken] = useState(null);
 
   const getThePost = () => {
     getSinglePost(postId).then(setPost);
@@ -21,12 +22,14 @@ export default function SinglePostPage() {
   };
 
   useEffect(() => {
+    const userToken = localStorage.getItem('auth_token');
+    setToken(userToken);
     getThePost();
   }, [router]);
 
   return (
     <div>
-      <PostCard router={router} postObject={post} onUpdate={getThePost} />
+      <PostCard userToken={token} postObject={post} onUpdate={onUpdate} />
       <div>
         <CommentForm commentObj={commentToUpdate} postId={post.id} />
         {

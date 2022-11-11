@@ -8,4 +8,10 @@ const getUserByUid = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default getUserByUid;
+const updateUser = (userObj) => new Promise((resolve, reject) => {
+  axios.put(`${dbUrl}/${userObj.id}`, userObj)
+    .then(resolve)
+    .catch(reject);
+});
+
+export { getUserByUid, updateUser };

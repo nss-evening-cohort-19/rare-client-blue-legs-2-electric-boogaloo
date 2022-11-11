@@ -46,7 +46,6 @@ body {
   background-color: white;
 }
 .postCard {
-  display: flex;
   width: 75%;
 }
 
@@ -83,7 +82,7 @@ body {
 }
 
 .postCardImage {
-  width: 50%;
+  width: 40%;
   height: auto;
   margin: auto;
   display: block;

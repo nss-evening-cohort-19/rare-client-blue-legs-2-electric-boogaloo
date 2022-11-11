@@ -5,21 +5,22 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
+import { deletePostAndStuff } from '../api/mergedData';
 
 export default function PostCard({
-  postObject, router, onUpdate,
+  postObject, onUpdate, userToken,
 }) {
   const deleteThisPost = () => {
-    /* if (window.confirm('Delete this post?')) {
-      getPostComments(postObject.id).then(() => {
-        deletePostComments(postObject.id).then(() => onUpdate());
+    if (window.confirm('Delete This Post?')) {
+      deletePostAndStuff(postObject).then(() => {
+        onUpdate();
       });
-    } */
-    onUpdate();
+    }
   };
 
   // eslint-disable-next-line react/prop-types
   const reactionCount = postObject.post_reactions?.length;
+  console.warn(postObject);
 
   return (
     <div>
@@ -33,7 +34,7 @@ export default function PostCard({
           </Link>
           <Card.Text className="reactionCount">Reaction Count: {reactionCount}</Card.Text>
           <div className="postCardButtons">
-            {router === `/posts/${postObject.id}` ? (
+            {parseInt(userToken, 10) === postObject.user_id ? (
               <div className="postCardButtons">
                 <Link href={`/posts/edit/${postObject.id}`} passHref>
                   <IconButton aria-label="edit" className="edit-btn">
@@ -68,5 +69,5 @@ PostCard.propTypes = {
     user_id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
-  router: PropTypes.string.isRequired,
+  userToken: PropTypes.number.isRequired,
 };

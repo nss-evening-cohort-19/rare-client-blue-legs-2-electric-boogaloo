@@ -46,10 +46,10 @@ function PostForm({ obj }) {
       ]));
     } else {
       setPostTags((prevState) => {
-        const prevCopy = prevState;
+        const prevCopy = [...prevState];
         const index = prevCopy.findIndex((postTag) => postTag.tag_id === Number(value));
-        const returnArr = prevCopy.splice(index, 1);
-        return returnArr;
+        prevCopy.splice(index, 1);
+        return prevCopy;
       });
     }
   };
@@ -92,7 +92,7 @@ function PostForm({ obj }) {
   useEffect(() => {
     setToken(localStorage.getItem('auth_token'));
     getTheContent();
-  }, [obj]);
+  }, [obj, router]);
 
   return (
     <>

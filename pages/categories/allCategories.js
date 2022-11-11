@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { React, useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { getAllCategories } from '../../api/categoryData';
+import CategoryForm from '../../components/CategoryForm';
 
 export default function AllCategoriesPage() {
   const [category, setCategory] = useState([]);
@@ -17,8 +18,11 @@ export default function AllCategoriesPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const refresh = () => getCategories();
+
   return (
     <>
+      <CategoryForm refresh={refresh} />
       <h2>Categories</h2>
       <Table striped bordered hover>
         <thead>

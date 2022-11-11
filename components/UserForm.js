@@ -21,6 +21,15 @@ function UserForm({ setToken, userObj }) {
   const [input, setInput] = useState(initialState);
   const router = useRouter();
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.warn(input);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.password === input.password_confirm) {
@@ -55,26 +64,26 @@ function UserForm({ setToken, userObj }) {
         <Form.Group>
 
           <Form.Label>First Name</Form.Label>
-          <Form.Control type="text" name="first_name" value={input.first_name} placeholder="Enter Your Fisrt Name" />
+          <Form.Control type="text" name="first_name" value={input.first_name} onChange={handleChange} placeholder="Enter Your Fisrt Name" />
 
           <Form.Label>Last Name</Form.Label>
-          <Form.Control type="text" name="last_name" value={input.last_name} placeholder="Enter Your Last Name" />
+          <Form.Control type="text" name="last_name" value={input.last_name} onChange={handleChange} placeholder="Enter Your Last Name" />
 
           <Form.Label>Username</Form.Label>
-          <Form.Control type="text" name="username" value={input.username} placeholder="Your Rare Alias" />
+          <Form.Control type="text" name="username" value={input.username} onChange={handleChange} placeholder="Your Rare Alias" />
 
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" name="email" value={input.email} />
+          <Form.Control type="email" name="email" value={input.email} onChange={handleChange} />
 
           <Form.Label>Password</Form.Label>
-          <Form.Control name="password" value={input.password} type="password" placeholder="Password" />
-          <Form.Control name="password_confirm" value={input.password_confirm} type="password" placeholder="Verify Password" />
+          <Form.Control name="password" value={input.password} type="password" onChange={handleChange} placeholder="Password" />
+          <Form.Control name="password_confirm" value={input.password_confirm} type="password" onChange={handleChange} placeholder="Verify Password" />
 
           <Form.Label>Profile Image</Form.Label>
-          <Form.Control name="profile_image_url" value={input.profile_image_url} type="text" />
+          <Form.Control name="profile_image_url" value={input.profile_image_url} onChange={handleChange} type="text" />
 
           <Form.Label>Bio</Form.Label>
-          <Form.Control type="text" name="bio" value={input.bio} as="textarea" rows={3} placeholder="Tell Us About Yourself" />
+          <Form.Control type="text" name="bio" value={input.bio} as="textarea" rows={3} onChange={handleChange} placeholder="Tell Us About Yourself" />
 
           <Button variant="success" type="submit">Sumbit</Button>
           <Button variant="danger" onClick={() => router.push('/login')}>Cancel</Button>

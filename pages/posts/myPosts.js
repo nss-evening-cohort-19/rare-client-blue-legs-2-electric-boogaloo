@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { getPostsByAuthorId } from '../../api/postData';
 import PostCard from '../../components/PostCard';
@@ -6,7 +5,6 @@ import PostCard from '../../components/PostCard';
 export default function MyPostsPage() {
   const [posts, setPosts] = useState();
   const [token, setToken] = useState(null);
-  const router = useRouter();
 
   const getMyPosts = () => {
     getPostsByAuthorId((Number(token))).then(setPosts);
@@ -22,7 +20,7 @@ export default function MyPostsPage() {
   return (
     <>
       {posts?.map((postObj) => (
-        <PostCard key={postObj.id} router={router.asPath} postObject={postObj} onUpdate={getMyPosts} />
+        <PostCard key={postObj.id} userToken={token} postObject={postObj} onUpdate={getMyPosts} />
       ))}
     </>
   );

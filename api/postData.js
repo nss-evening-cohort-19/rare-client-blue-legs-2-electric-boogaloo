@@ -35,7 +35,12 @@ const getPostsByAuthorId = (authorId) => new Promise((resolve, reject) => {
 const getSinglePost = (postId) => fetch(`http://localhost:8088/posts/${postId}`)
   .then((res) => res.json());
 
+const deletePost = (postId) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/${postId}`)
+    .then(resolve)
+    .catch(reject);
+});
+
 export {
-  getAllPosts, getPostById, createPost, updatePost, getSinglePost,
-  getPostsByAuthorId,
+  getAllPosts, getPostById, createPost, updatePost, getSinglePost, getPostsByAuthorId, deletePost,
 };

@@ -1,14 +1,17 @@
-import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
-import AddIcon from '@mui/icons-material/Add';
 import { getAllPosts } from '../api/postData';
 import AllPostComponent from '../components/AllPostComponent';
+import Search from '../components/Search';
 
 export default function AllPostsPage() {
   const [posts, setAllPosts] = useState();
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   const getPosts = () => {
-    getAllPosts().then(setAllPosts);
+    getAllPosts().then((thePosts) => {
+      setAllPosts(thePosts);
+      setFilteredPosts(thePosts);
+    });
   };
 
   useEffect(() => {
@@ -17,14 +20,10 @@ export default function AllPostsPage() {
 
   return (
     <>
-      <div className="addButton">
-        <Link passHref href="/posts/new">
-          <AddIcon />
-        </Link>
-      </div>
+      <Search posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} />
       {
-        posts?.map((postObject) => (
-          <AllPostComponent obj={postObject} key={postObject.id} onUpdate={getPosts} />
+        filteredPosts?.map((postObject) => (
+          <AllPostComponent obj={postObject} key={postObject.id} />
         ))
       }
     </>

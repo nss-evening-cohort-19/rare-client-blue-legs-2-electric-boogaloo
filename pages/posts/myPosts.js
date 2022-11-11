@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import AddIcon from '@mui/icons-material/Add';
 import { getPostsByAuthorId } from '../../api/postData';
 import PostCard from '../../components/PostCard';
 
@@ -23,11 +21,6 @@ export default function MyPostsPage() {
 
   return (
     <>
-      <div className="addButton">
-        <Link passHref href="/posts/new">
-          <AddIcon />
-        </Link>
-      </div>
       {posts?.map((postObj) => (
         <PostCard key={postObj.id} router={router.asPath} postObject={postObj} onUpdate={getMyPosts} />
       ))}

@@ -132,3 +132,17 @@ body {
   padding-right: 50px;
   padding-top: 10px;
 }
+
+.loginRegisterButtons {
+  color: white;
+}
+
+.addIcon {
+  background-color: white;
+  margin-right: 20px;
+}
+
+.search {
+  margin: 20px;
+  width: 500px;
+}

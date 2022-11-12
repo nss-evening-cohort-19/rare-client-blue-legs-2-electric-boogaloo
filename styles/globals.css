@@ -49,6 +49,11 @@ body {
   width: 75%;
 }
 
+.postCardTitle:hover {
+  color: blue;
+  cursor: pointer;
+}
+
 .postPubDate {
   position: absolute;
   top: 10px;

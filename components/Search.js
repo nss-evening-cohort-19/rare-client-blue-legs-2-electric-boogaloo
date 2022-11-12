@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -28,7 +29,7 @@ Search.propTypes = {
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     id: PropTypes.number,
-  })).isRequired,
-  setFilteredPosts: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired,
+  })),
+  setFilteredPosts: PropTypes.func,
+  onUpdate: PropTypes.func,
 };

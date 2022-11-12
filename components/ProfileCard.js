@@ -3,9 +3,14 @@ import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 export default function ProfileCard({ obj }) {
+  const deleteUser = () => {
+    console.warn(obj.id);
+  };
+
   return (
     <Card className="user-card">
       <div className="user-card-left">
@@ -20,6 +25,9 @@ export default function ProfileCard({ obj }) {
           <Link className="" href={`/user/edit/${obj.id}`} passHref>
             <IconButton aria-label="edit" className="edit-btn">
               <EditIcon style={{ color: 'black' }} />
+            </IconButton>
+            <IconButton aria-label="delete" className="delete-btn " onClick={deleteUser}>
+              <DeleteIcon style={{ color: 'black' }} />
             </IconButton>
           </Link>
         </div>

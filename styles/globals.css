@@ -124,13 +124,17 @@ body {
 }
 .user-profile-card-img{
   height: 300px;
-  width: auto;
+  width:200px;
   object-fit: cover;
 }
 .user-card-email-date{
   width: 80%;
   display: flex;
   justify-content: space-evenly;
+}
+.user-card-first-last{
+  display: flex;
+  align-items: center;
 }
 
 /* */

@@ -5,6 +5,8 @@ import { getSinglePost } from '../../api/postData';
 import PostCard from '../../components/PostCard';
 import CommentForm from '../../components/CommentForm';
 import CommentCard from '../../components/CommentCard';
+import getReactions from '../../api/reactionData';
+import ReactionContainer from '../../components/Reactions/ReactionContainer';
 
 export default function SinglePostPage() {
   const [post, setPost] = useState({});
@@ -12,9 +14,12 @@ export default function SinglePostPage() {
   const [commentToUpdate, setCommentToUpdate] = useState({});
   const { postId } = router.query;
   const [token, setToken] = useState(null);
+  const [reactions, setReactions] = useState([]);
 
-  const getThePost = () => {
-    getSinglePost(postId).then(setPost);
+  const getTheContent = () => {
+    getSinglePost(postId).then(setPost).then(() => {
+      getReactions().then(setReactions);
+    });
   };
 
   const onUpdate = () => {
@@ -24,12 +29,13 @@ export default function SinglePostPage() {
   useEffect(() => {
     const userToken = localStorage.getItem('auth_token');
     setToken(userToken);
-    getThePost();
+    getTheContent();
   }, [router]);
 
   return (
     <div>
       <PostCard userToken={token} postObject={post} onUpdate={onUpdate} />
+      <ReactionContainer reactions={reactions} postReactions={post.post_reactions} userToken={parseInt(token, 10)} postId={post.id} onUpdate={getTheContent} />
       <div>
         <CommentForm commentObj={commentToUpdate} postId={post.id} />
         {

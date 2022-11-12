@@ -1,16 +1,26 @@
+/* eslint-disable consistent-return */
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useEffect, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-// import UnsubscribeIcon from '@mui/icons-material/Unsubscribe';
+import UnsubscribeIcon from '@mui/icons-material/Unsubscribe';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import getSubscriptionByAuthorId from '../api/subscriptionData';
 
 export default function ProfileCard({ obj }) {
   const [token, setToken] = useState(null);
+  const [subscription, setSubscription] = useState([]);
+  const getSubscriptions = () => {
+    getSubscriptionByAuthorId(obj.id).then(setSubscription);
+    console.warn('subscription ', subscription);
+  };
 
   useEffect(() => {
-    const userToken = localStorage.getItem('auth_token');
-    setToken(Number(userToken));
-  }, [token]);
+    setToken(localStorage.getItem('auth_token'));
+    getSubscriptions();
+    console.warn('obj', obj);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token, obj]);
 
   return (
     <Card className="user-card">
@@ -22,7 +32,9 @@ export default function ProfileCard({ obj }) {
       </div>
       <div className="user-card-right">
         <div className="user-card-first-last">
-          <Card.Title>{obj.first_name} {obj.last_name}</Card.Title>
+          <Card.Title>
+            {obj.first_name} {obj.last_name}
+          </Card.Title>
         </div>
         <div className="user-card-email-date">
           <Card.Text>{obj.email}</Card.Text>
@@ -31,9 +43,23 @@ export default function ProfileCard({ obj }) {
         <div className="user-bio">
           <Card.Text>{obj.bio}</Card.Text>
         </div>
-        { token !== obj.id ? (
-          <Button><PersonAddAltIcon /></Button>
-        ) : ''}
+        {(() => {
+          if (token === obj.id) {
+            return '';
+          } if (token === subscription.follower_id) {
+            return (
+              <Button>
+                <UnsubscribeIcon />
+              </Button>
+            );
+          } if (token !== subscription.follower_id) {
+            return (
+              <Button>
+                <PersonAddAltIcon />
+              </Button>
+            );
+          }
+        })}
       </div>
     </Card>
   );

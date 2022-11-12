@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { getPostsByAuthorId } from '../../api/postData';
 import { getUserByUid } from '../../api/userData';
@@ -9,7 +8,6 @@ export default function MyPostsPage() {
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(null);
-  const router = useRouter();
 
   const getMyPosts = () => {
     getUserByUid(token).then(setUser);
@@ -27,7 +25,7 @@ export default function MyPostsPage() {
     <>
       <ProfileCard obj={user} />
       {posts?.map((postObj) => (
-        <PostCard key={postObj.id} router={router.asPath} postObject={postObj} onUpdate={getMyPosts} />
+        <PostCard key={postObj.id} userToken={token} postObject={postObj} onUpdate={getMyPosts} />
       ))}
     </>
   );

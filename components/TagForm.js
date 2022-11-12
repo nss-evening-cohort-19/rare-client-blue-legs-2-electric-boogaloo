@@ -31,7 +31,6 @@ function TagForm({ tagObj, refresh }) {
     const payload = {
       ...formInput,
     };
-    console.warn(payload);
     createTag(payload).then(() => {
       refresh();
       setFormInput(initialState);

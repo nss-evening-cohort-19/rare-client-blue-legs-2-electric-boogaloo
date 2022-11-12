@@ -1,4 +1,6 @@
 import { deletePost, getPostsByAuthorId } from './postData';
+import { deleteComment } from './commentsData';
+import deletePostReaction from './postReactionData';
 import { createPostTag, deletePostTag, getPostTagsByPostId } from './postTagsData';
 import { deleteUser } from './userData';
 
@@ -27,5 +29,15 @@ const deleteUserAndContent = (uid) => new Promise((resolve, reject) => {
   }).catch(reject);
 });
 
+const deletePostAndStuff = async (postObject) => {
+  const commentsToDelete = postObject.comments.map((comment) => deleteComment(comment.id));
+  const postTagsToDelete = postObject.post_tags.map((postTag) => deletePostTag(postTag.id));
+  const postReactionsToDelete = postObject.post_reactions.map((postReaction) => deletePostReaction(postReaction.id));
+  await Promise.all([...commentsToDelete, ...postTagsToDelete, ...postReactionsToDelete]);
+  return deletePost(postObject.id);
+};
+
 // eslint-disable-next-line import/prefer-default-export
-export { deletePostTagsByPostId, createPostTags, deleteUserAndContent };
+export {
+  deletePostTagsByPostId, createPostTags, deletePostAndStuff, deleteUserAndContent
+};

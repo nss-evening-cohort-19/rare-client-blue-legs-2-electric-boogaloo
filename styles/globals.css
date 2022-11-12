@@ -46,8 +46,12 @@ body {
   background-color: white;
 }
 .postCard {
-  display: flex;
   width: 75%;
+}
+
+.postCardTitle:hover {
+  color: blue;
+  cursor: pointer;
 }
 
 .postPubDate {
@@ -83,7 +87,7 @@ body {
 }
 
 .postCardImage {
-  width: 50%;
+  width: 40%;
   height: auto;
   margin: auto;
   display: block;
@@ -149,4 +153,10 @@ body {
 .search {
   margin: 20px;
   width: 500px;
+}
+
+.reactionContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
 }

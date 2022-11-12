@@ -144,3 +144,9 @@ body {
   background-color: white;
   margin-right: 20px;
 }
+
+.reactionContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+}

@@ -23,11 +23,7 @@ const deletePostAndStuff = async (postObject) => {
   const commentsToDelete = postObject.comments.map((comment) => deleteComment(comment.id));
   const postTagsToDelete = postObject.post_tags.map((postTag) => deletePostTag(postTag.id));
   const postReactionsToDelete = postObject.post_reactions.map((postReaction) => deletePostReaction(postReaction.id));
-  await Promise.all(commentsToDelete).then(() => {
-    Promise.all(postTagsToDelete);
-  }).then(() => {
-    Promise.all(postReactionsToDelete);
-  });
+  await Promise.all([...commentsToDelete, ...postTagsToDelete, ...postReactionsToDelete]);
   return deletePost(postObject.id);
 };
 

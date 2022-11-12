@@ -1,6 +1,6 @@
 import { deletePost, getPostsByAuthorId } from './postData';
 import { deleteComment } from './commentsData';
-import deletePostReaction from './postReactionData';
+import { deletePostReaction } from './postReactionData';
 import { createPostTag, deletePostTag, getPostTagsByPostId } from './postTagsData';
 import { deleteUser } from './userData';
 
@@ -39,5 +39,5 @@ const deletePostAndStuff = async (postObject) => {
 
 // eslint-disable-next-line import/prefer-default-export
 export {
-  deletePostTagsByPostId, createPostTags, deletePostAndStuff, deleteUserAndContent
+  deletePostTagsByPostId, createPostTags, deletePostAndStuff, deleteUserAndContent,
 };

@@ -24,10 +24,6 @@ export default function SinglePostPage() {
     });
   };
 
-  const onUpdate = () => {
-    router.push(`/posts/${postId}`);
-  };
-
   useEffect(() => {
     const userToken = localStorage.getItem('auth_token');
     setToken(userToken);
@@ -36,7 +32,7 @@ export default function SinglePostPage() {
 
   return (
     <div>
-      <PostCard userToken={token} postObject={post} onUpdate={onUpdate} />
+      <PostCard userToken={token} postObject={post} onUpdate={() => router.push('/posts/myPosts')} />
       <div>
         <Card>
           <h4>Article</h4>
@@ -48,7 +44,7 @@ export default function SinglePostPage() {
         <CommentForm commentObj={commentToUpdate} postId={post.id} />
         {
           post.comments?.map((comment) => (
-            <CommentCard commentObj={comment} key={comment.id} onUpdate={onUpdate} setCommentToUpdate={setCommentToUpdate} />
+            <CommentCard commentObj={comment} key={comment.id} onUpdate={getTheContent} setCommentToUpdate={setCommentToUpdate} />
           ))
           }
       </div>

@@ -63,7 +63,7 @@ function UserForm({ setToken, userObj }) {
         <Form.Group>
 
           <Form.Label>First Name</Form.Label>
-          <Form.Control type="text" name="first_name" value={input.first_name} onChange={handleChange} placeholder="Enter Your Fisrt Name" />
+          <Form.Control type="text" name="first_name" value={input.first_name} onChange={handleChange} placeholder="Enter Your First Name" />
 
           <Form.Label>Last Name</Form.Label>
           <Form.Control type="text" name="last_name" value={input.last_name} onChange={handleChange} placeholder="Enter Your Last Name" />

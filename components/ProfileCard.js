@@ -41,8 +41,11 @@ export default function ProfileCard({ obj }) {
     }
   };
   const deleteUser = () => {
-    if (window.confirm('Are you sure you wan to delete me ?')) {
-      deleteUserAndContent(obj.id).then(() => router.push('/'));
+    if (window.confirm('Are you sure you want to delete me ?')) {
+      deleteUserAndContent(obj.id).then(() => {
+        localStorage.setItem('auth_token', '');
+        router.push('/login');
+      });
     }
   };
 
@@ -63,14 +66,18 @@ export default function ProfileCard({ obj }) {
       <div className="user-card-right">
         <div className="user-card-first-last">
           <Card.Title>{obj.first_name} {obj.last_name}</Card.Title>
-          <Link className="" href={`/user/edit/${obj.id}`} passHref>
-            <IconButton aria-label="edit" className="edit-btn">
-              <EditIcon style={{ color: 'black' }} />
-            </IconButton>
-          </Link>
-          <IconButton aria-label="delete" className="delete-btn " onClick={deleteUser}>
-            <DeleteIcon style={{ color: 'black' }} />
-          </IconButton>
+          {Number(token) === obj.id ? (
+            <>
+              <Link className="" href={`/user/edit/${obj.id}`} passHref>
+                <IconButton aria-label="edit" className="edit-btn">
+                  <EditIcon style={{ color: 'black' }} />
+                </IconButton>
+              </Link>
+              <IconButton aria-label="delete" className="delete-btn " onClick={deleteUser}>
+                <DeleteIcon style={{ color: 'black' }} />
+              </IconButton>
+            </>
+          ) : ('')}
         </div>
         <div className="user-card-email-date">
           <Card.Text>{obj.email}</Card.Text>

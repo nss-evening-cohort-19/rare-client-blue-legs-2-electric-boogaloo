@@ -39,5 +39,5 @@ const deletePostAndStuff = async (postObject) => {
 
 // eslint-disable-next-line import/prefer-default-export
 export {
-  deletePostTagsByPostId, createPostTags, deletePostAndStuff, deleteUserAndContent
+  deletePostTagsByPostId, createPostTags, deletePostAndStuff, deleteUserAndContent,
 };

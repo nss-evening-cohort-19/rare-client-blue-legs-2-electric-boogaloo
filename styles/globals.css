@@ -145,3 +145,9 @@ body {
   margin: 20px;
   width: 500px;
 }
+
+.reactionContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+}

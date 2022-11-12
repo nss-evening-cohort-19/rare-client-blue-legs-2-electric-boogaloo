@@ -12,6 +12,15 @@ export default function AllPostsPage() {
   const [categories, setAllCategories] = useState();
   const [tags, setAllTags] = useState();
   const [filteredPosts, setFilteredPosts] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+
+  const onClick = (event) => {
+    if (event === true) {
+      setShowResults(true);
+    } else {
+      setShowResults(false);
+    }
+  };
 
   const getPosts = () => {
     getAllPosts().then((thePosts) => {
@@ -37,8 +46,8 @@ export default function AllPostsPage() {
   return (
     <>
       <Search posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} />
-      <FilterButtons categories={categories} tags={tags} posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} />
-      <SortByComponent posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} />
+      <SortByComponent posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} setShowResults={onClick} />
+      { showResults ? <FilterButtons categories={categories} tags={tags} posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} /> : null}
       {
         filteredPosts?.map((postObject) => (
           <AllPostComponent obj={postObject} key={postObject.id} />

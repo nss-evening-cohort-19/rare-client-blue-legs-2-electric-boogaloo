@@ -18,7 +18,7 @@ export default function FilterButtons({
   return (
     <div>
       <div>
-        <p>Categories</p>
+        <p>Category</p>
         <Stack direction="row" spacing={1}>
           <Chip label="All" variant="outlined" onClick={handleClick} />
           {categories?.map((category) => (

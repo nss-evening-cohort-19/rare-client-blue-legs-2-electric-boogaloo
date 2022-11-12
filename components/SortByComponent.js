@@ -6,24 +6,31 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import PropTypes from 'prop-types';
 
-export default function SortByComponent({ posts, setFilteredPosts, onUpdate }) {
+export default function SortByComponent({
+  posts, setFilteredPosts, onUpdate, setShowResults,
+}) {
   const [sort, setSort] = React.useState('');
 
   const doFilter = (event) => {
     if (event.target.value === 'title') {
       const titResults = [...posts].sort((post1, post2) => post1.title.localeCompare(post2.title));
       setFilteredPosts(titResults);
+      setShowResults(true);
     } else if (event.target.value === 'author') {
       const autResults = [...posts].sort((post1, post2) => post1.author.localeCompare(post2.author));
       setFilteredPosts(autResults);
+      setShowResults(true);
     } else if (event.target.value === 'oldestToNewestDate') {
       const oldDResults = [...posts].sort((post1, post2) => new Date(post1.publication_date) - new Date(post2.publication_date));
       setFilteredPosts(oldDResults);
+      setShowResults(true);
     } else if (event.target.value === 'newestToOldestDate') {
       const newDResults = [...posts].sort((post1, post2) => new Date(post2.publication_date) - new Date(post1.publication_date));
       setFilteredPosts(newDResults);
+      setShowResults(true);
     } else {
       onUpdate();
+      setShowResults(false);
     }
   };
 
@@ -66,4 +73,5 @@ SortByComponent.propTypes = {
   })),
   setFilteredPosts: PropTypes.func,
   onUpdate: PropTypes.func,
+  setShowResults: PropTypes.func,
 };

@@ -1,6 +1,6 @@
 import { deleteComment } from './commentsData';
 import { deletePost } from './postData';
-import deletePostReaction from './postReactionData';
+import { deletePostReaction } from './postReactionData';
 import { createPostTag, deletePostTag, getPostTagsByPostId } from './postTagsData';
 
 const deletePostTagsByPostId = (postId) => new Promise((resolve, reject) => {

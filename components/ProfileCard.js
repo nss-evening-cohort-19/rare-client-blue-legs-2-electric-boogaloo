@@ -26,10 +26,10 @@ export default function ProfileCard({ obj }) {
             <IconButton aria-label="edit" className="edit-btn">
               <EditIcon style={{ color: 'black' }} />
             </IconButton>
-            <IconButton aria-label="delete" className="delete-btn " onClick={deleteUser}>
-              <DeleteIcon style={{ color: 'black' }} />
-            </IconButton>
           </Link>
+          <IconButton aria-label="delete" className="delete-btn " onClick={deleteUser}>
+            <DeleteIcon style={{ color: 'black' }} />
+          </IconButton>
         </div>
         <div className="user-card-email-date">
           <Card.Text>{obj.email}</Card.Text>

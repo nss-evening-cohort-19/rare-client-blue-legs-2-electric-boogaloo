@@ -31,7 +31,6 @@ function CategoryForm({ categoryObj, refresh }) {
     const payload = {
       ...formInput,
     };
-    console.warn(payload);
     createCategory(payload).then(() => {
       refresh();
       setFormInput(initialState);

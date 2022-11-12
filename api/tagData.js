@@ -9,3 +9,6 @@ export const createTag = (tag) => fetch('http://localhost:8088/tags', {
   },
   body: JSON.stringify(tag),
 });
+
+export const getTagsByPost = (postId) => fetch(`http://localhost:8088/posttags?post_id=${postId}`)
+  .then((res) => res.json());

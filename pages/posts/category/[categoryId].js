@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, React } from 'react';
 import { useRouter } from 'next/router';
 import { getPostsByCategory } from '../../../api/categoryData';

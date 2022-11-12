@@ -8,4 +8,16 @@ const getUserByUid = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default getUserByUid;
+const updateUser = (userObj) => new Promise((resolve, reject) => {
+  axios.put(`${dbUrl}/${userObj.id}`, userObj)
+    .then(resolve)
+    .catch(reject);
+});
+
+const deleteUser = (userId) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/${userId}`)
+    .then(resolve)
+    .catch(reject);
+});
+
+export { getUserByUid, updateUser, deleteUser };

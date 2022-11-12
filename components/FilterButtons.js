@@ -20,9 +20,9 @@ export default function FilterButtons({
       <div>
         <p>Category</p>
         <Stack direction="row" spacing={1}>
-          <Chip label="All" variant="outlined" onClick={handleClick} />
+          <Chip style={{ backgroundColor: 'white', color: 'black' }} label="All" variant="outlined" onClick={handleClick} />
           {categories?.map((category) => (
-            <Chip label={category.label} variant="outlined" onClick={handleClick} key={category.id} />
+            <Chip label={category.label} style={{ backgroundColor: 'white', color: 'black' }} variant="outlined" onClick={handleClick} key={category.id} />
           ))}
         </Stack>
       </div>

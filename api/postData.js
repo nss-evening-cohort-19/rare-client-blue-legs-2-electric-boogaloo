@@ -42,5 +42,6 @@ const deletePost = (postId) => new Promise((resolve, reject) => {
 });
 
 export {
-  getAllPosts, getPostById, createPost, updatePost, getSinglePost, getPostsByAuthorId, deletePost,
+  getAllPosts, getPostById, createPost, updatePost, getSinglePost,
+  getPostsByAuthorId, deletePost,
 };

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { Card } from 'react-bootstrap';
 import { getSinglePost } from '../../api/postData';
 import PostCard from '../../components/PostCard';
 import CommentForm from '../../components/CommentForm';
@@ -36,6 +37,12 @@ export default function SinglePostPage() {
   return (
     <div>
       <PostCard userToken={token} postObject={post} onUpdate={onUpdate} />
+      <div>
+        <Card>
+          <h4>Article</h4>
+          <Card.Text>{post.content}</Card.Text>
+        </Card>
+      </div>
       <ReactionContainer reactions={reactions} postReactions={post.post_reactions} userToken={parseInt(token, 10)} postId={post.id} onUpdate={getTheContent} />
       <div>
         <CommentForm commentObj={commentToUpdate} postId={post.id} />

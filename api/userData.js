@@ -14,4 +14,10 @@ const updateUser = (userObj) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getUserByUid, updateUser };
+const deleteUser = (userId) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/${userId}`)
+    .then(resolve)
+    .catch(reject);
+});
+
+export { getUserByUid, updateUser, deleteUser };

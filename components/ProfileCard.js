@@ -5,10 +5,16 @@ import Link from 'next/link';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { useRouter } from 'next/router';
+import { deleteUserAndContent } from '../api/mergedData';
 
 export default function ProfileCard({ obj }) {
+  const router = useRouter();
+
   const deleteUser = () => {
-    console.warn(obj.id);
+    if (window.confirm('Are you sure you wan to delete me ?')) {
+      deleteUserAndContent(obj.id).then(() => router.push('/'));
+    }
   };
 
   return (

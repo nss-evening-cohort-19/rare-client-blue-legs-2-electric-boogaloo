@@ -50,6 +50,7 @@ export default function SortByComponent({
           onChange={handleChange}
           autoWidth
           label="Sort"
+          style={{ backgroundColor: 'white', color: 'black' }}
         >
           <MenuItem value="">
             <em>None</em>

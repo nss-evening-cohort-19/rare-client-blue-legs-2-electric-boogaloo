@@ -1,4 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import 'allPosts.css';
+@import 'myPosts.css';
 
 html,
 body {
@@ -47,6 +49,7 @@ body {
 }
 .postCard {
   width: 75%;
+  margin: 10px;
 }
 
 .postPubDate {
@@ -83,6 +86,7 @@ body {
 
 .postCardImage {
   width: 40%;
+  max-height: 500px;
   height: auto;
   margin: auto;
   display: block;
@@ -139,9 +143,4 @@ body {
 .addIcon {
   background-color: white;
   margin-right: 20px;
-}
-
-.search {
-  margin: 20px;
-  width: 500px;
 }

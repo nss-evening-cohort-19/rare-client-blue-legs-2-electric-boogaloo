@@ -18,10 +18,10 @@ export default function MyPostsPage() {
   }, [token]);
 
   return (
-    <>
+    <div>
       {posts?.map((postObj) => (
         <PostCard key={postObj.id} userToken={token} postObject={postObj} onUpdate={getMyPosts} />
       ))}
-    </>
+    </div>
   );
 }

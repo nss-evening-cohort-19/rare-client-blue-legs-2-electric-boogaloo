@@ -1,0 +1,14 @@
+/* search bar on All Posts Page */
+.search {
+  margin: 20px;
+  width: 800px;
+  height: 45px;
+}
+/* search bar on All Posts Page */
+
+/* filter styling on All Posts Page */
+.filters {
+  display: flex;
+  justify-content: center;
+}
+/* filter styling on All Posts Page */

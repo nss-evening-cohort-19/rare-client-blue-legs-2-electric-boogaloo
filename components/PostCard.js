@@ -25,7 +25,9 @@ export default function PostCard({
     <div>
       <Card className="postCard">
         <Card.Body className="postCardBody">
-          <Card.Title className="postCardTitle">{postObject.title}</Card.Title>
+          <Link href={`/posts/${postObject.id}`} passHref>
+            <Card.Title className="postCardTitle">{postObject.title}</Card.Title>
+          </Link>
           <Image className="postCardImage" src={postObject.image_url} />
           <Card.Text className="postPubDate">Publication Date: {postObject.publication_date}</Card.Text>
           <Link href={`/user/${postObject.user_id}`} passHref>

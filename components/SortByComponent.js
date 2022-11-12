@@ -49,7 +49,8 @@ export default function SortByComponent({
           value={sort}
           onChange={handleChange}
           autoWidth
-          label="Sort"
+          label="Sort/Filter"
+          style={{ backgroundColor: 'white', color: 'black' }}
         >
           <MenuItem value="">
             <em>None</em>

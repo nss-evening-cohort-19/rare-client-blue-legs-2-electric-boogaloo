@@ -44,15 +44,19 @@ export default function AllPostsPage() {
   }, []);
 
   return (
-    <>
+    <div className="text-center my-4">
       <Search posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} />
       <SortByComponent posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} setShowResults={onClick} />
-      { showResults ? <FilterButtons categories={categories} tags={tags} posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} /> : null}
-      {
-        filteredPosts?.map((postObject) => (
-          <AllPostComponent obj={postObject} key={postObject.id} />
-        ))
-      }
-    </>
+      <div className="d-flex flex-wrap text-center my-4 filters">
+        { showResults ? <FilterButtons categories={categories} tags={tags} posts={posts} setFilteredPosts={setFilteredPosts} onUpdate={getPosts} /> : null}
+      </div>
+      <div className="d-flex flex-wrap">
+        {
+          filteredPosts?.map((postObject) => (
+            <AllPostComponent obj={postObject} key={postObject.id} />
+          ))
+        }
+      </div>
+    </div>
   );
 }

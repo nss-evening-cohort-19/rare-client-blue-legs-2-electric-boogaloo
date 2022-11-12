@@ -73,6 +73,7 @@ function PostForm({ obj }) {
         deletePostTagsByPostId(obj.id).then(() => {
           const tagsArr = postTags.map((tag) => ({ ...tag, post_id: obj.id }));
           createPostTags(tagsArr).then(() => {
+            router.push(`/posts/${obj.id}`);
           });
         });
       });
@@ -82,11 +83,11 @@ function PostForm({ obj }) {
         deletePostTagsByPostId(postObj.id).then(() => {
           const tagsArr = postTags.map((tag) => ({ ...tag, post_id: postObj.id }));
           createPostTags(tagsArr).then(() => {
+            router.push('/posts/myPosts');
           });
         });
       });
     }
-    router.push('/posts/myPosts');
   };
 
   useEffect(() => {

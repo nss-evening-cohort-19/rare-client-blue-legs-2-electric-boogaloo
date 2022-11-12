@@ -5,6 +5,7 @@ import { getSinglePost } from '../../api/postData';
 import PostCard from '../../components/PostCard';
 import CommentForm from '../../components/CommentForm';
 import CommentCard from '../../components/CommentCard';
+import TagComponent from '../../components/TagComponent';
 
 export default function SinglePostPage() {
   const [post, setPost] = useState({});
@@ -18,7 +19,7 @@ export default function SinglePostPage() {
   };
 
   const onUpdate = () => {
-    router.push('/posts/myPosts');
+    router.push(`/posts/${postId}`);
   };
 
   useEffect(() => {
@@ -35,6 +36,14 @@ export default function SinglePostPage() {
         {
           post.comments?.map((comment) => (
             <CommentCard commentObj={comment} key={comment.id} onUpdate={onUpdate} setCommentToUpdate={setCommentToUpdate} />
+          ))
+          }
+      </div>
+      <div>
+        Tags
+        {
+          post.post_tags?.map((tag) => (
+            <TagComponent tagObj={tag} />
           ))
           }
       </div>

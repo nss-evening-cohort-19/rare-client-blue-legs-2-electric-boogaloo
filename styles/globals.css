@@ -167,13 +167,14 @@ body {
   margin-left: 20px;
   background-color: lightgray;
   border: 1px solid;
-  border-color: black;
+  border-color: lightgray;
   border-radius: 20%;
   color: white;
 }
 
 .reactionCounter:hover {
   background-color: white;
+  border-color: black;
   color: black;
   cursor: pointer;
 }
@@ -194,6 +195,10 @@ body {
 
 .number {
   padding: 6px;
+}
+
+.modalEmoji {
+  transition: background-color .4s;
 }
 
 .modalEmoji:hover {

@@ -9,13 +9,15 @@ export default function ReactionContainer({
 
   return (
     <div className="reactionContainer">
-      <ReactionsModal reactions={reactions} userToken={userToken} postReactions={postReactions} postId={postId} onUpdate={onUpdate} />
+      <div className="reactionModalContainer">
+        <ReactionsModal reactions={reactions} userToken={userToken} postReactions={postReactions} postId={postId} onUpdate={onUpdate} />
+      </div>
       {reactionsToDisplay.map((reaction) => {
         const reactionCount = postReactions?.filter((postReaction) => postReaction.reaction_id === reaction.id).length;
 
         return (
-          <div>
-            <Reaction reaction={reaction} userToken={userToken} postReactions={postReactions} postId={postId} onUpdate={onUpdate} /> {reactionCount}
+          <div className="reactionCounter">
+            <Reaction reaction={reaction} userToken={userToken} postReactions={postReactions} postId={postId} onUpdate={onUpdate} /> <div className="number">{reactionCount}</div>
           </div>
         );
       })}

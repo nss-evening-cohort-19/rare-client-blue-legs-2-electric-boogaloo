@@ -23,7 +23,7 @@ export default function Reaction({
   };
 
   return (
-    <div className="reactions">
+    <div className="reactionIcon">
 
       <img
         src={reaction.image_url}

@@ -155,6 +155,48 @@ body {
 
 .reactionContainer {
   display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+.reactionCounter {
+  display: flex;
   flex-direction: row;
-  margin: 5px;
+  margin-left: 20px;
+  background-color: lightgray;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 20%;
+  color: white;
+}
+
+.reactionCounter:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.reactionModalContainer {
+  margin-left: 20px;
+}
+
+.reaction-modal {
+  display: flex;
+  flex-direction: row;
+}
+
+.emoji {
+  margin-right: 6px;
+  margin-left: 6px;
+}
+
+.number {
+  padding: 6px;
+}
+
+.modalEmoji:hover {
+  background-color: lightblue;
+  cursor: pointer;
+  border-radius: 10%;
 }

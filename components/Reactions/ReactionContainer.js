@@ -17,7 +17,7 @@ export default function ReactionContainer({
 
         return (
           <div className="reactionCounter">
-            <Reaction reaction={reaction} userToken={userToken} postReactions={postReactions} postId={postId} onUpdate={onUpdate} /> <div className="number">{reactionCount}</div>
+            <Reaction reaction={reaction} userToken={userToken} postReactions={postReactions} postId={postId} onUpdate={onUpdate} handleClose={() => null} /> <div className="number">{reactionCount}</div>
           </div>
         );
       })}

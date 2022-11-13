@@ -153,6 +153,7 @@ body {
   margin-right: 20px;
 }
 
+/* REACTIONS */
 .reactionContainer {
   display: flex;
   flex-direction: row-reverse;
@@ -200,3 +201,4 @@ body {
   cursor: pointer;
   border-radius: 10%;
 }
+/* */

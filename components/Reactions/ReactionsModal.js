@@ -25,7 +25,7 @@ function ReactionsModal({
           <Modal.Title>Choose a Reaction!</Modal.Title>
         </Modal.Header>
         <Modal.Body className="reaction-modal">{reactions.map((reaction) => (
-          <div className="modalEmoji"><Reaction reaction={reaction} userToken={userToken} postReactions={postReactions} postId={postId} onUpdate={onUpdate} />
+          <div className="modalEmoji"><Reaction reaction={reaction} userToken={userToken} postReactions={postReactions} postId={postId} onUpdate={onUpdate} handleClose={handleClose} />
           </div>
         ))}
         </Modal.Body>

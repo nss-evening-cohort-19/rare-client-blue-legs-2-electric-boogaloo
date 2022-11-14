@@ -36,6 +36,7 @@ export default function ProfileCard({ obj, token, setToken }) {
         author_id: obj.id,
         created_on: date,
       };
+      console.warn(payload);
       createSubscription(payload).then(() => { getSubscriptions(); });
     }
   };

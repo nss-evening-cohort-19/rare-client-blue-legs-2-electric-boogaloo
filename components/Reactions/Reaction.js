@@ -6,24 +6,30 @@ import PropTypes from 'prop-types';
 import { deletePostReaction, createPostReaction } from '../../api/postReactionData';
 
 export default function Reaction({
-  reaction, userToken, postReactions, postId, onUpdate,
+  reaction, userToken, postReactions, postId, onUpdate, handleClose,
 }) {
   const handleClick = () => {
-    const reactions = postReactions.filter((postReaction) => postReaction.reaction_id === reaction.id);
+    const reactions = postReactions.filter((postReaction) => postReaction.user_id === userToken && postReaction.reaction_id === reaction.id);
     if (reactions.length) {
-      deletePostReaction(reactions[0].id).then(() => { onUpdate(); });
+      deletePostReaction(reactions[0].id).then(() => {
+        onUpdate();
+        handleClose();
+      });
     } else {
       const payload = {
         user_id: userToken,
         reaction_id: reaction.id,
         post_id: postId,
       };
-      createPostReaction(payload).then(() => { onUpdate(); });
+      createPostReaction(payload).then(() => {
+        onUpdate();
+        handleClose();
+      });
     }
   };
 
   return (
-    <div className="reactions">
+    <div className="reactionIcon">
 
       <img
         src={reaction.image_url}
@@ -51,5 +57,10 @@ Reaction.propTypes = {
   })).isRequired,
   postId: PropTypes.number.isRequired,
   onUpdate: PropTypes.func.isRequired,
+  handleClose: PropTypes.func,
 
+};
+
+Reaction.defaultProps = {
+  handleClose: null,
 };

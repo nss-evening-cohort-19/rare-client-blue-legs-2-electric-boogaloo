@@ -1,6 +1,6 @@
 import { deletePost, getPostsByAuthorId } from './postData';
 import { deleteComment } from './commentsData';
-import deletePostReaction from './postReactionData';
+import { deletePostReaction } from './postReactionData';
 import { createPostTag, deletePostTag, getPostTagsByPostId } from './postTagsData';
 import { deleteUser } from './userData';
 

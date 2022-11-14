@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function AllPostComponent({ obj }) {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem', margin: '8px' }}>
       <Card.Body>
         <Card.Title>{obj.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{obj.author}</Card.Subtitle>

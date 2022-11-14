@@ -1,4 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import 'allPosts.css';
 
 html,
 body {
@@ -47,6 +48,7 @@ body {
 }
 .postCard {
   width: 75%;
+  margin: 10px;
 }
 
 .postCardTitle:hover {
@@ -88,6 +90,7 @@ body {
 
 .postCardImage {
   width: 40%;
+  max-height: 500px;
   height: auto;
   margin: auto;
   display: block;
@@ -150,15 +153,12 @@ body {
   margin-right: 20px;
 }
 
-.search {
-  margin: 20px;
-  width: 500px;
-}
-
+/* REACTIONS */
 .reactionContainer {
   display: flex;
-  flex-direction: row;
-  margin: 5px;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin: 10px;
 }
 /*User Form*/
 
@@ -180,3 +180,50 @@ body {
  margin-top: 6px;
  margin-bottom: 0px;
 }
+
+.reactionCounter {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+  background-color: lightgray;
+  border: 1px solid;
+  border-color: lightgray;
+  border-radius: 20%;
+  color: white;
+}
+
+.reactionCounter:hover {
+  background-color: white;
+  border-color: black;
+  color: black;
+  cursor: pointer;
+}
+
+.reactionModalContainer {
+  margin-left: 20px;
+}
+
+.reaction-modal {
+  display: flex;
+  flex-direction: row;
+}
+
+.emoji {
+  margin-right: 6px;
+  margin-left: 6px;
+}
+
+.number {
+  padding: 6px;
+}
+
+.modalEmoji {
+  transition: background-color .4s;
+}
+
+.modalEmoji:hover {
+  background-color: lightblue;
+  cursor: pointer;
+  border-radius: 10%;
+}
+/* */

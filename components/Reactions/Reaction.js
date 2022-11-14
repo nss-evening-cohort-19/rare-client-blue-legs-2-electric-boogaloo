@@ -9,7 +9,7 @@ export default function Reaction({
   reaction, userToken, postReactions, postId, onUpdate, handleClose,
 }) {
   const handleClick = () => {
-    const reactions = postReactions.filter((postReaction) => postReaction.reaction_id === reaction.id);
+    const reactions = postReactions.filter((postReaction) => postReaction.user_id === userToken && postReaction.reaction_id === reaction.id);
     if (reactions.length) {
       deletePostReaction(reactions[0].id).then(() => {
         onUpdate();

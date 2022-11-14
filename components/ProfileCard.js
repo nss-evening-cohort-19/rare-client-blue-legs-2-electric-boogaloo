@@ -14,8 +14,7 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { deleteUserAndContent } from '../api/mergedData';
 import { getSubscriptionByAuthorId, createSubscription, deleteSubscription } from '../api/subscriptionData';
 
-export default function ProfileCard({ obj }) {
-  const [token, setToken] = useState(null);
+export default function ProfileCard({ obj, token, setToken }) {
   const [subscription, setSubscription] = useState([]);
   const router = useRouter();
 
@@ -43,14 +42,13 @@ export default function ProfileCard({ obj }) {
   const deleteUser = () => {
     if (window.confirm('Are you sure you want to delete me ?')) {
       deleteUserAndContent(obj.id).then(() => {
-        localStorage.setItem('auth_token', '');
+        setToken('');
         router.push('/login');
       });
     }
   };
 
   useEffect(() => {
-    setToken(localStorage.getItem('auth_token'));
     getSubscriptions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, obj]);
@@ -113,4 +111,6 @@ ProfileCard.propTypes = {
     profile_image_url: PropTypes.string,
     created_on: PropTypes.string,
   }).isRequired,
+  setToken: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
 };

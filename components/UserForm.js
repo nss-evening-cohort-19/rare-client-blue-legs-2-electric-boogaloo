@@ -52,14 +52,18 @@ function UserForm({ setToken, userObj }) {
 
   useEffect(() => {
     if (userObj.id) {
-      setInput(userObj);
+      setInput((prevState) => ({
+        ...prevState,
+        ...userObj,
+        password_confirm: userObj.password,
+      }));
     }
   }, [userObj, router]);
 
   return (
     <>
-      <h1>Edit User</h1>
-      <Form onSubmit={handleSubmit}>
+      <h1 className="user_form_header">{userObj.id ? 'Edit Profile' : 'Registration'}</h1>
+      <Form className="user_form" onSubmit={handleSubmit}>
         <Form.Group>
 
           <Form.Label>First Name</Form.Label>
@@ -72,21 +76,21 @@ function UserForm({ setToken, userObj }) {
           <Form.Control type="text" name="username" value={input.username} onChange={handleChange} placeholder="Your Rare Alias" />
 
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" name="email" value={input.email} onChange={handleChange} />
+          <Form.Control type="email" name="email" placeholder="Enter Valid Email Address" value={input.email} onChange={handleChange} />
 
           <Form.Label>Password</Form.Label>
-          <Form.Control name="password" value={input.password} type="password" onChange={handleChange} placeholder="Password" />
+          <Form.Control name="password" value={input.password} type="password" onChange={handleChange} placeholder="Enter Password" />
           <Form.Control name="password_confirm" value={input.password_confirm} type="password" onChange={handleChange} placeholder="Verify Password" />
 
-          <Form.Label>Profile Image</Form.Label>
-          <Form.Control name="profile_image_url" value={input.profile_image_url} onChange={handleChange} type="text" />
+          <Form.Label>Profile Image URL</Form.Label>
+          <Form.Control name="profile_image_url" placeholder="Enter You Image URL" value={input.profile_image_url} onChange={handleChange} type="text" />
 
           <Form.Label>Bio</Form.Label>
           <Form.Control type="text" name="bio" value={input.bio} as="textarea" rows={3} onChange={handleChange} placeholder="Tell Us About Yourself" />
-
-          <Button variant="success" type="submit">Sumbit</Button>
-          <Button variant="danger" onClick={() => router.push('/login')}>Cancel</Button>
-
+          <div className="user_form_button_div">
+            <Button variant="success" type="submit">{userObj.id ? 'Update' : 'Sumbit'}</Button>
+            <Button variant="danger" onClick={() => router.push('/posts/myPosts')}>Cancel</Button>
+          </div>
         </Form.Group>
       </Form>
     </>

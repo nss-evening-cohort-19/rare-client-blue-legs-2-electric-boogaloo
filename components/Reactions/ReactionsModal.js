@@ -24,7 +24,10 @@ function ReactionsModal({
         <Modal.Header className="modalHeader" closeButton>
           <Modal.Title>Choose a Reaction!</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="tracklist-modal">{reactions.map((reaction) => <Reaction reaction={reaction} userToken={userToken} postReactions={postReactions} postId={postId} onUpdate={onUpdate} />)}
+        <Modal.Body className="reaction-modal">{reactions.map((reaction) => (
+          <div className="modalEmoji"><Reaction reaction={reaction} userToken={userToken} postReactions={postReactions} postId={postId} onUpdate={onUpdate} handleClose={handleClose} />
+          </div>
+        ))}
         </Modal.Body>
       </Modal>
     </>

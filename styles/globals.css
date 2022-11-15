@@ -160,6 +160,26 @@ body {
   justify-content: flex-end;
   margin: 10px;
 }
+/*User Form*/
+
+.user_form{
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.user_form_button_div{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.user_form_header{
+  text-align: center;
+  margin-top: 10px;
+}
+.user_form .form-label {
+ margin-top: 6px;
+ margin-bottom: 0px;
+}
 
 .reactionCounter {
   display: flex;

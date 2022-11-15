@@ -6,10 +6,15 @@ import AddIcon from '@mui/icons-material/Add';
 import {
   Container, Nav, Navbar, Button,
 } from 'react-bootstrap';
+import { useEffect } from 'react';
 import Logo from './rare.jpeg';
 
 function AppNavBar({ token, setToken }) {
   const navigate = useRouter();
+
+  useEffect(() => {
+    console.warn(token);
+  }, [token]);
 
   return (
     <Navbar bg="dark" variant="dark">

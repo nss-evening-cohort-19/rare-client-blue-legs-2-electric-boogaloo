@@ -14,8 +14,7 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { deleteUserAndContent } from '../api/mergedData';
 import { getSubscriptionByAuthorId, createSubscription, deleteSubscription } from '../api/subscriptionData';
 
-export default function ProfileCard({ obj }) {
-  const [token, setToken] = useState(null);
+export default function ProfileCard({ obj, token, setToken }) {
   const [subscription, setSubscription] = useState([]);
   const router = useRouter();
 
@@ -37,17 +36,20 @@ export default function ProfileCard({ obj }) {
         author_id: obj.id,
         created_on: date,
       };
+      console.warn(payload);
       createSubscription(payload).then(() => { getSubscriptions(); });
     }
   };
   const deleteUser = () => {
-    if (window.confirm('Are you sure you wan to delete me ?')) {
-      deleteUserAndContent(obj.id).then(() => router.push('/'));
+    if (window.confirm('Are you sure you want to delete me ?')) {
+      deleteUserAndContent(obj.id).then(() => {
+        setToken('');
+        router.push('/login');
+      });
     }
   };
 
   useEffect(() => {
-    setToken(localStorage.getItem('auth_token'));
     getSubscriptions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, obj]);
@@ -63,14 +65,18 @@ export default function ProfileCard({ obj }) {
       <div className="user-card-right">
         <div className="user-card-first-last">
           <Card.Title>{obj.first_name} {obj.last_name}</Card.Title>
-          <Link className="" href={`/user/edit/${obj.id}`} passHref>
-            <IconButton aria-label="edit" className="edit-btn">
-              <EditIcon style={{ color: 'black' }} />
-            </IconButton>
-          </Link>
-          <IconButton aria-label="delete" className="delete-btn " onClick={deleteUser}>
-            <DeleteIcon style={{ color: 'black' }} />
-          </IconButton>
+          {Number(token) === obj.id ? (
+            <>
+              <Link className="" href={`/user/edit/${obj.id}`} passHref>
+                <IconButton aria-label="edit" className="edit-btn">
+                  <EditIcon style={{ color: 'black' }} />
+                </IconButton>
+              </Link>
+              <IconButton aria-label="delete" className="delete-btn " onClick={deleteUser}>
+                <DeleteIcon style={{ color: 'black' }} />
+              </IconButton>
+            </>
+          ) : ('')}
         </div>
         <div className="user-card-email-date">
           <Card.Text>{obj.email}</Card.Text>
@@ -106,4 +112,6 @@ ProfileCard.propTypes = {
     profile_image_url: PropTypes.string,
     created_on: PropTypes.string,
   }).isRequired,
+  setToken: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
 };
